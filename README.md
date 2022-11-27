@@ -44,18 +44,19 @@ Pada era saat ini dimana banyak kegiatan dapat dilakukan secara online, dimulai 
 
 Seperti yang telah disebutkan dalam latar belakang permasalahan, maka terdapat beberapa masalah yang harus dipecahkan, yaitu:
 - Bagaimana cara membuat sistem rekomendasi agar sistem rekomendasi tersebut dapat digunakan dalam memberikan rekomendasi yang sesuai dengan pelanggan/user.
-- algoritma mana yang tepat untuk melakukan pembuatan sistem rekomendasi buku berdasarkan konten dan berdasarkan rating pelanggan/user.
+- Algoritma mana yang tepat untuk melakukan pembuatan sistem rekomendasi buku berdasarkan konten dan berdasarkan rating pelanggan/user.
+- Fitur-fitur mana yang tepat untuk membuat sistem rekomendasi.
 
 ### Goals
 
 Setelah permasalahan diketahui, maka harus memiliki tujuan dalam menyelesaikan permasalah tersebut, dan permasalah tersebut dapat diselesaikan dengan:
-- Menggunakan klasifikasi menggunakan machine learning dengan bahasa pemrograman python.
-- Memilih beberapa algoritma untuk klasifikasi, dan memilih algoritma dengan akurasi terbaik. 
-
+- Membuat sistem rekomendasi menggunakan *machine learning* dengan bahasa pemrograman python.
+- Memilih algoritma yang tepat dalam membuat rekomendasi berbasis konten dan berbasis rating dari pelanggan/user.
+- Memilih fitur-fitur yang baik dan sesuai dengan algoritma yang digunakan.
 
 ### Solution statements
-- Menggunakan algoritma Naive Bayes dan Decission Tree dalam penyelesaian permasalahan yang ada.
-- Menggunakan beberapa algoritma dalam penyelesaian klasifikasi untuk mencari nilai terbaik, dengan menggunakan Naive Bayes, Decission Tree dan Logistic Regression.
+- Menggunakan algoritma *Content Based* dan *Collaborative Filtering* dalam penyelesaian permasalahan yang ada.
+- Menggunakan algoritma *Content Based* dengan bebrapa proses preparasi berupa membuat *bag of words*, vektoriasasi kata, dan menggunakan ukuran kesamaan beruapa *cosine similarity*, dan untuk algoritma *Collaborative Filtering* menggunakan RecommenderNet.
 
 <br/><br/>
 
