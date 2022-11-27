@@ -55,6 +55,8 @@ Setelah permasalahan diketahui, maka harus memiliki tujuan dalam menyelesaikan p
 - Memilih fitur-fitur yang baik dan sesuai dengan algoritma yang digunakan.
 
 ### Solution statements
+
+- Memilih algoritma sistem rekomendasi berbasis personalisasi dari pelanggan.
 - Menggunakan algoritma *Content Based* dan *Collaborative Filtering* dalam penyelesaian permasalahan yang ada.
 - Menggunakan algoritma *Content Based* dengan bebrapa proses preparasi berupa membuat *bag of words*, vektoriasasi kata, dan menggunakan ukuran kesamaan beruapa *cosine similarity*, dan untuk algoritma *Collaborative Filtering* menggunakan RecommenderNet.
 
