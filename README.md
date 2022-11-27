@@ -1,6 +1,6 @@
 # Sistem Rekomendasi Buku menngunakan ***Content Based*** dan ***Collaborative Filtering*** - Luki Prasetyo
 
-## ***Project Overview***
+## **Project Overview**
 
 Proyek ini merupakan sebuah proyek untuk membuat sistem rekomendasi berbasis kolaborasi dan berbasi konten. Membeli barang secara online telah menjadi tren saat ini, dibandingkan dengan pergi keluar dan membeli barang sendiri. Ketika membeli barang secara online maka, tedapat salah satu cara bagi penjual atau penyedia layanan belanja online untuk meningkatkan minat beli dari pembeli, salah satu caranya adalah dengan memberi rekomendasi barang, sehingga pembeli menjadi antusias, memudahkan pembeli untuk mencari barang lain dan memberikan cara yang lebih mudah dan cepat untuk membeli barang.
 <br />
@@ -28,7 +28,7 @@ Jurnal Pertama
 - Di Terbitkan pada 12 Desember 2016
 
 Jurnal Kedua
-- Jurnal: ***Machine Learning based Efficient Recommendation System for Book Selection using User based Collaborative Filtering Algorith***
+- Jurnal: ***Machine Learning based Efficient Recommendation System for Book Selection using User based Collaborative Filtering Algorithm***
 - Authors: M. Kommineni, P. Alekhya, T. M. Vyshnavi, V. Aparna, K. Swetha and V. Mounika
 - *2020 Fourth International Conference on Inventive Systems and Control (ICISC)*
 - Di Terbitkan pada 19 Agustuws 2020
@@ -111,7 +111,7 @@ Sumber data dapat diakses pada [goodbooks-10k repositroy oleh zygmuntz](https://
 
 ### Visualisasi Data
 Melakukan *Exploratory Data Anlysis* menggunakan library pandas, yaitu berupa
-- Melihat sturuktur data dari 3 data set dengan contoh data sebagai berikut:
+- Melihat sturuktur data dari 2 data set dengan contoh data sebagai berikut:
     - books.csv
  
 | id | book_id | best_book_id | work_id | books_count | authors                         | original_public<br>ation_year | original_title                              | title                                                          | ... |
@@ -125,6 +125,8 @@ Melakukan *Exploratory Data Anlysis* menggunakan library pandas, yaitu berupa
         
    - Informasi dari data set
     
+RangeIndex: 10000 entries, 0 to 9999
+
 | #  | Column                    | Non-Null Count | Dtype   |
 |----|---------------------------|----------------|---------|
 | 0  | id                        | 10000 non-null | int64   |
@@ -151,6 +153,9 @@ Melakukan *Exploratory Data Anlysis* menggunakan library pandas, yaitu berupa
 | 21 | image_url                 | 10000 non-null | object  |
 | 22 | small_image_url           | 10000 non-null | object  |
 
+dtypes: float64(3), int64(13), object(7)
+
+memory usage: 1.8+ MB
         
    - Mencari nilai statsitik dari data set
 
@@ -166,45 +171,84 @@ Melakukan *Exploratory Data Anlysis* menggunakan library pandas, yaitu berupa
 |  max  | 5.304407e+06 | 1.451679e-02 |
 
 <br /><br />
-- Melihat struktur data 
+   - rating.csv
+ 
+|   | book_id | user_id | rating |
+|--:|--------:|--------:|-------:|
+| 0 |       1 |     314 |      5 |
+| 1 |       1 |     439 |      3 |
+| 2 |       1 |     588 |      5 |
+| 3 |       1 |    1169 |      4 |
+| 4 |       1 |    1185 |      4 |
+        
+   - Informasi dari data set
+    
+RangeIndex: 981756 entries, 0 to 981755
 
-RangeIndex: 147269 entries, 0 to 147268
-Data columns (total 4 columns):
-| # |      Column |  Non-Null Count | Dtype   |
-|--:|------------:|----------------:|---------|
-| 0 |        Name | 147269 non-null | object  |
-| 1 |      Gender | 147269 non-null | object  |
-| 2 |       Count | 147269 non-null | int64   |
-| 3 | Probability | 147269 non-null | float64 |
+| #  | Column                    | Non-Null Count  | Dtype   |
+|----|---------------------------|-----------------|---------|
+| 0  | book_id                   | 981756 non-null | int64   |
+| 1  | user_id                   | 981756 non-null | int64   |
+| 2  | rating                    | 981756 non-null | int64   |
 
-dtypes: float64(1), int64(1), object(2)
-memory usage: 4.5+ MB
+dtypes: int64(3)
+
+memory usage: 1.8+ MB
+        
 
 <br /><br />
 Melakukan visualisasi data menggunakan library matplotlib dan seaborn untuk memahami data lebih jauh, dengan visualisasi sebagai berikut:
-- Bar Chart untuk banyaknya jenis kelamin berdasrkan jumlah nama di data set.
+- Top 10 dengan nilai rating tertinggi
 
-![barchart1](https://user-images.githubusercontent.com/105812169/201480172-39461b4a-5eb1-4359-9383-905546130733.png)
-
-
-- Pie Chart untuk banyaknya jenis kelamin berdasrkan jumlah nama di data set.
-
-![piechart1](https://user-images.githubusercontent.com/105812169/201480238-4c15ae28-a31b-4b47-a48f-2ccac82326ab.png)
-
-
-- Bar Chart untuk banyaknya jenis kelamin berdasrkan jumlah nama di data set dengan mempertimbangkan variabel jumlah (*Count*) untuk setiap nama.
-
-![barchart2](https://user-images.githubusercontent.com/105812169/201480193-6c7ca5ef-14cd-43ed-a1d9-7561577d4d40.png)
-
-- Pie Chart untuk banyaknya jenis kelamin berdasrkan jumlah nama di data set dengan mempertimbangkan variabel jumlah (*Count*) untuk setiap nama.
-
-![piechart2](https://user-images.githubusercontent.com/105812169/201480252-16c29ae6-2458-4e92-bdc6-c719ca1ee21d.png)
+|                           title                             | small_image_url |
+|:-----------------------------------------------------------:|:---------------:|
+|                The Complete Calvin and Hobbes               | ![top10-1](https://images.gr-assets.com/books/1473064526s/24812.jpg) |
+|    Harry Potter Boxed Set, Books 1-5 (Harry Potter, #1-5)   | ![top10-2](https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png) |
+|        Words of Radiance (The Stormlight Archive, #2)       | ![top10-3](https://images.gr-assets.com/books/1391535251s/17332218.jpg) |
+|                   Mark of the Lion Trilogy                  | ![top10-4](https://images.gr-assets.com/books/1349032180s/95602.jpg) |
+|                       ESV Study Bible                       | ![top10-5](https://images.gr-assets.com/books/1410151002s/5031805.jpg) |
+|     It's a Magical World: A Calvin and Hobbes Collection    | ![top10-6](https://images.gr-assets.com/books/1437420710s/24814.jpg) |
+| There's Treasure Everywhere: A Calvin and Hobbes Collection | ![top10-7](https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png) |
+|           Harry Potter Boxset (Harry Potter, #1-7)          | ![top10-8](https://images.gr-assets.com/books/1392579059s/862041.jpg) |
+|         Harry Potter Collection (Harry Potter, #1-6)        | ![top10-9](https://images.gr-assets.com/books/1328867351s/10.jpg) |
+|             The Indispensable Calvin and Hobbes             | ![top10-10](https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png) |
 
 
 
-Berdasarkan dari visual diatas dapat disimpulkan bahwa jika kita tidak menggunakan variabel jumlah (*Count*) untuk mencari perbandingan antara sebaran jenis kelamin di setiap nama, maka terlihat bahwa "Nama untuk Pria paling banyak muncul, atau memiliki variasi yang tinggi bila dibandingkan dengan nama wanita"
+
+- Top 10 buku terpopuler
+
+|                           title                          | small_image_url |
+|:--------------------------------------------------------:|:---------------:|
+|          The Hunger Games (The Hunger Games, #1)         | ![pop10-1](https://images.gr-assets.com/books/1447303603s/2767052.jpg) |
+| Harry Potter and the Sorcerer's Stone (Harry Potter, #1) | ![pop10-2](https://images.gr-assets.com/books/1474154022s/3.jpg) |
+|                  Twilight (Twilight, #1)                 | ![pop10-3](https://images.gr-assets.com/books/1361039443s/41865.jpg) |
+|                   To Kill a Mockingbird                  | ![pop10-4](https://images.gr-assets.com/books/1361975680s/2657.jpg) |
+|                     The Great Gatsby                     | ![pop10-5](https://images.gr-assets.com/books/1490528560s/4671.jpg) |
+|                  The Fault in Our Stars                  | ![pop10-6](https://images.gr-assets.com/books/1360206420s/11870085.jpg) |
+|                        The Hobbit                        | ![pop10-7](https://images.gr-assets.com/books/1372847500s/5907.jpg) |
+|                  The Catcher in the Rye                  | ![pop10-8](https://images.gr-assets.com/books/1398034300s/5107.jpg) |
+|                    Pride and Prejudice                   | ![pop10-9](https://images.gr-assets.com/books/1320399351s/1885.jpg) |
+|           Angels & Demons (Robert Langdon, #1)           | ![pop10-10](https://images.gr-assets.com/books/1303390735s/960.jpg) |
+
+
+- Distribusi nilai rating oleh user yang diberikan kepada buku
+
+![book-distribution](https://user-images.githubusercontent.com/105812169/204145974-c965c22c-abe5-48cf-835d-a64051aeb204.png)
+
+
+- Penulis buku dengan rata-rata rating tertinggi
+
+![author-rating](https://user-images.githubusercontent.com/105812169/204146061-32e77cec-2b6e-4d2b-a962-f3b637696991.png)
+
+
+- Buku yang user ingin baca, yang masuk kedalam *wishlist* user
+
+![wishlist-book](https://user-images.githubusercontent.com/105812169/204146124-67405cb1-870b-4b33-8e35-eda65accc74e.png)
+
+
+Berdasarkan dari visual diatas dapat disimpulkan bahwa rating paling banyak berada di antara rating 3.5 dan 4, dan pada gambar kedua, Bill Waterson memiliki nilai rating yang sangat tinggi sebesar 4.82, dan buku yang ingin dibaca oleh user merupakan buku-buku yang sering kita dengar seperti Harry Potter dan Lord of the Rings.
 <br /><br />
-Tetapi jika kita melihat dari jumlah perbandingan antara Pria dan Wanita maka proporsi anatara Pria dan Wanita tidak signifikan berbeda
 
 ## Data Preparation
 Tahapan yang dilakukan dalam penyelesaian masalah atau pembuatan klasifikasi menggunakan bahasa pemrograman python, dan dilakukan beberapa tahap preparasi data, yaitu sebagai berikut:
