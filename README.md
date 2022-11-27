@@ -44,7 +44,7 @@ Pada era saat ini dimana banyak kegiatan dapat dilakukan secara online, dimulai 
 
 Seperti yang telah disebutkan dalam latar belakang permasalahan, maka terdapat beberapa masalah yang harus dipecahkan, yaitu:
 - Bagaimana cara membuat sistem rekomendasi agar sistem rekomendasi tersebut dapat digunakan dalam memberikan rekomendasi yang sesuai dengan pelanggan/user.
-- Algoritma mana yang tepat untuk melakukan pembuatan sistem rekomendasi buku berdasarkan konten dan berdasarkan rating pelanggan/user.
+- Algoritma mana yang tepat untuk melakukan pembuatan sistem rekomendasi.
 - Fitur-fitur mana yang tepat untuk membuat sistem rekomendasi.
 
 ### Goals
@@ -52,51 +52,107 @@ Seperti yang telah disebutkan dalam latar belakang permasalahan, maka terdapat b
 Setelah permasalahan diketahui, maka harus memiliki tujuan dalam menyelesaikan permasalah tersebut, dan permasalah tersebut dapat diselesaikan dengan:
 - Membuat sistem rekomendasi menggunakan *machine learning* dengan bahasa pemrograman python.
 - Memilih algoritma yang tepat dalam membuat rekomendasi berbasis konten dan berbasis rating dari pelanggan/user.
-- Memilih fitur-fitur yang baik dan sesuai dengan algoritma yang digunakan.
+- Memilih fitur-fitur yang baik dan sesuai dengan algoritma yang digunakan, untuk menghasilkan sistem rekomendasi yang baik dan tepat.
 
 ### Solution statements
 
-- Memilih algoritma sistem rekomendasi berbasis personalisasi dari pelanggan.
+- Memilih algoritma sistem rekomendasi berbasis konten dari buku dan personalisasi dari pelanggan.
 - Menggunakan algoritma *Content Based* dan *Collaborative Filtering* dalam penyelesaian permasalahan yang ada.
-- Menggunakan algoritma *Content Based* dengan bebrapa proses preparasi berupa membuat *bag of words*, vektoriasasi kata, dan menggunakan ukuran kesamaan beruapa *cosine similarity*, dan untuk algoritma *Collaborative Filtering* menggunakan RecommenderNet.
+- Menggunakan algoritma *Content Based* dengan bebrapa proses preparasi berupa membuat *bag of words*, vektoriasasi kata, dan menggunakan ukuran kesamaan beruapa *cosine similarity*, dan untuk algoritma *Collaborative Filtering* menggunakan RecommenderNet, dan memilih fitur rating sebagai fitur utama pada model.
 
 <br/><br/>
 
 ## Data Understanding
-Data set yang digunakan merupakan data yang berada pada UCI Machine Learning Repository, dengan nama data set yaitu **"Gender By Name Data Set"**.
-Data set tersebut merupakan data yang dibuat oleh Arun Rao dari Berkeley Skydeck University of California, dan di donasikan ke UCI pada 15 Maret 2020, dimana data set ini memiliki 142720 baris data. Data ini didapatkan dari beberapa negara seperti US, UK, Canada, dan Australia.
+Data set yang digunakan merupakan data yang berada pada repository github yang dimiliki oleh **zygmuntz**, dengan nama data set yaitu **"goodbooks-10k"**.
+Data set tersebut merupakan data yang di **scraping** dari [https://www.goodreads.com/](https://www.goodreads.com). data set ini memiliki 6 juta rating untuk 10 ribu buku paling populer.
 
 Informasi data sebagai berikut:
-- Kumpulan data ini menggabungkan jumlah untuk nama depan laki-laki dan perempuan dalam periode waktu tertentu, dan kemudian menghitung probabilitas untuk nama yang diberikan
-- Kumpulan data sumber berasal dari otoritas pemerintah:
-    - AS: Nama Bayi dari Aplikasi Kartu Jaminan Sosial - Data Nasional, 1880 hingga 2019
-    - UK: Nama-nama bayi di Buletin Statistik Inggris dan Wales, 2011 hingga 2018
-    - Kanada: British Columbia 100 Years of Popularity Baby names, 1918 hingga 2018
-    - Australia: Nama Bayi Populer, Departemen Kejaksaan Agung, 1944 hingga 2019
+- Rating buku bernilai antara 1 sampai dengan 5.
+- Data set *books.csv* memiliki 10 ribu *book_id*, dan data set *ratings.csv* memiliki 53424 *user_id*, dimana setiap user setidaknya telah melakukan rating untuk dua buku.
+- Pada data set ini pun juga memiliki variabel-variabel berupa, buku yang telah di tandai untuk dibaca, metadata dari buku (author, tahun, dll) dan juga tag dari buku.
+- Pada data set *to_read.csv* memiliki *book_id* dari setiap buku yang telah ditandai oleh *user_id*.
+- *book_tags.csv* memiliki nilai *tags* yang telah di masukan oleh user, yang disimpan dalam *tag_id*.
+- *tags.csv* menerjemahkan *tag_id* menjadi nama dari *tags*.
 
-Sumber data dapat diakses pada [UCI Machine Learning Repository](https://archive.ics.uci.edu/ml/datasets/Gender+by+Name).
+Sumber data dapat diakses pada [goodbooks-10k repositroy oleh zygmuntz](https://github.com/zygmuntz/goodbooks-10k)
 
-### Variabel-variabel pada Gender by Name UCI dataset adalah sebagai berikut:
-- Variabel dari data set
-    - Name: String (meruapakan variabel tentang nama depan seseorang dari berbagai negara)
-    - Gender: M/F (*category/string*)
-    - Count: Integer (merupakan variabel jumlah dari setiap nama)
-    - Probability: Float (merupakan variabel probabilitas dari setiap nama muncul dari total semua nama)
+### Variabel-variabel pada goodbooks-10k dataset yang digunakan dalam pembuatan sistem rekomendasi adalah sebagai berikut:
+- books.csv
+    - id: id unik dari dataset (integer)
+    - book_id: id dari buku pada situs **goodreads** (integer)
+    - best_book_id: duplikasi dari book_id
+    - work_id: integer
+    - books_count: jumlah buku yang ada pada persediaan di **goodreads**
+    - isbn: *Internatinal Standard Book Number* (integer)
+    - isbn13: *International Standard Book Number* dengan 13 digit (integer)
+    - authors: penulis buku (string)
+    - original_publication_year: tahun publikasi buku (float)
+    - original_title: judul buku (string)
+    - title: judul pada situs **goodreads**
+    - language_code: kode bahasa yang digunakan pada buku (string)
+    - average rating: rata-rata dari rating buku (float)
+    - ratings_count: jumlah rating yang diberikan oleh user untuk setiap buku (integer)
+    - work_ratings_counts: jumlah rating (integer)
+    - work_text_reviews_count: jumlah banyaknya review untuk setiap buku (integer)
+    - rating_1: jumlah rating dengan nilai 1 (integer)
+    - rating_2: jumlah rating dengan nilai 2 (integer)
+    - rating_3: jumlah rating dengan nilai 3 (integer)
+    - rating_4: jumlah rating dengan nilai 4 (integer)
+    - rating_5: jumlah rating dengan nilai 5 (integer)
+    - image_url: url dari cover buku (string)
+    - small_image_url: url untuk cover buku dengan ukuran kecil (string)
+- rating.csv
+    - book_id: id dari buku pada situs **goodreads** (integer)
+    - user_id: id dari setiap pelanggan (integer)
+    - rating: rating yang diberikan oleh setiap user untuk setiap buku, dengan nilai antara 1 sampai dengan 5 (integer)
+- to_read.csv
+    - user_id: book_id: id dari buku pada situs **goodreads** (integer)
+    - book_id: user_id: id dari setiap pelanggan (integer)
 
 ### Visualisasi Data
 Melakukan *Exploratory Data Anlysis* menggunakan library pandas, yaitu berupa
-- Melihat sturuktur data dengan contoh data sebagai berikut:
+- Melihat sturuktur data dari 3 data set dengan contoh data sebagai berikut:
+    - books.csv
+ 
+| id | book_id | best_book_id | work_id | books_count | authors                         | original_public<br>ation_year | original_title                              | title                                                          | ... |
+|----|---------|--------------|---------|-------------|---------------------------------|-------------------------------|---------------------------------------------|----------------------------------------------------------------|-----|
+| 1  | 2767052 | 2767052      | 2792775 | 272         | Suzanne Collins                 | 2008                          | The Hunger Games                            | The Hunger Games<br>(The Hunger Games, #1)                     | ... |
+| 2  | 3       | 3            | 4640799 | 491         | J.K. Rowling,<br>Mary GrandPrÃ© | 1997                          | Harry Potter and<br>the Philosopher's Stone | Harry Potter and<br>the Sorcerer's Stone<br>(Harry Potter, #1) | ... |
+| 3  | 41865   | 41865        | 3212258 | 226         | Stephenie Meyer                 | 2005                          | Twilight                                    | Twilight (Twilight, #1)                                        | ... |
+| 4  | 2657    | 2657         | 3275794 | 487         | Harper Lee                      | 1960                          | To Kill a Mockingbird                       | To Kill a Mockingbird                                          | ... |
+| 5  | 4671    | 4671         | 245494  | 1356        | F. Scott Fitzgerald             | 1925                          | The Great Gatsby                            | The Great Gatsby                                               | ... |
 
-|        |   Name | Gender | Count |  Probability |
-|-------:|-------:|-------:|------:|-------------:|
-| 114150 |      A |      M |     2 | 5.473480e-09 |
-| 112246 |      A |      F |     2 | 5.473480e-09 |
-| 115618 |  A'Aff |      F |     1 | 2.736740e-09 |
-| 133954 | A'Aron |      M |     1 | 2.736740e-09 |
-| 115619 | A'Dele |      F |     1 | 2.736740e-09 |
+        
+   - Informasi dari data set
+    
+| #  | Column                    | Non-Null Count | Dtype   |
+|----|---------------------------|----------------|---------|
+| 0  | id                        | 10000 non-null | int64   |
+| 1  | book_id                   | 10000 non-null | int64   |
+| 2  | best_book_id              | 10000 non-null | int64   |
+| 3  | work_id                   | 10000 non-null | int64   |
+| 4  | books_count               | 10000 non-null | int64   |
+| 5  | isbn                      | 9300 non-null  | object  |
+| 6  | isbn13                    | 9415 non-null  | float64 |
+| 7  | authors                   | 10000 non-null | object  |
+| 8  | original_publication_year | 9979 non-null  | float64 |
+| 9  | original_title            | 9415 non-null  | object  |
+| 10 | title                     | 10000 non-null | object  |
+| 11 | language_code             | 8916 non-null  | object  |
+| 12 | average_rating            | 10000 non-null | float64 |
+| 13 | ratings_count             | 10000 non-null | int64   |
+| 14 | work_ratings_count        | 10000 non-null | int64   |
+| 15 | work_text_reviews_count   | 10000 non-null | int64   |
+| 16 | ratings_1                 | 10000 non-null | int64   |
+| 17 | ratings_2                 | 10000 non-null | int64   |
+| 18 | ratings_3                 | 10000 non-null | int64   |
+| 19 | ratings_4                 | 10000 non-null | int64   |
+| 20 | ratings_5                 | 10000 non-null | int64   |
+| 21 | image_url                 | 10000 non-null | object  |
+| 22 | small_image_url           | 10000 non-null | object  |
 
-<br /><br />
-- Mencari nilai statsitik dari data set
+        
+   - Mencari nilai statsitik dari data set
 
 |       |        Count |  Probability |
 |------:|-------------:|-------------:|
