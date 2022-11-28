@@ -2,36 +2,11 @@
 
 ## **Project Overview**
 
-Proyek ini merupakan sebuah proyek untuk membuat sistem rekomendasi berbasis kolaborasi dan berbasi konten. Membeli barang secara online telah menjadi tren saat ini, dibandingkan dengan pergi keluar dan membeli barang sendiri. Ketika membeli barang secara online maka, tedapat salah satu cara bagi penjual atau penyedia layanan belanja online untuk meningkatkan minat beli dari pembeli, salah satu caranya adalah dengan memberi rekomendasi barang, sehingga pembeli menjadi antusias, memudahkan pembeli untuk mencari barang lain dan memberikan cara yang lebih mudah dan cepat untuk membeli barang.
+Membeli barang secara online telah menjadi tren saat ini, dibandingkan dengan pergi keluar dan membeli barang sendiri. Ketika membeli barang secara online maka, tedapat salah satu cara bagi penjual atau penyedia layanan belanja online untuk meningkatkan minat beli dari pembeli, salah satu caranya adalah dengan memberi rekomendasi barang, sehingga pembeli menjadi antusias, memudahkan pembeli untuk mencari barang lain dan memberikan cara yang lebih mudah dan cepat untuk membeli barang.
 
-Karena di era saat ini yang kebanyakan kegiatan dapat dilakukan secara online, maka sistem rekomendasi dapat digunakan untuk meningkatkan kepuasan pelanggan dan juga meningkatkan aktivitas user, yang dapat berperan penting dalam membuat instansi atau perusahaan untuk meningkatkan kepuasan pelanggan dan juga meningkatkan pendapatan perusahaan, dengan menawarkan rekomendasi yang tepat bagi pelanggan/user. Sehingga sistem rekomendasi sangatlah penting, dimana pada kasus ini adalah rekomendasi untuk buku yang dibaca oleh pelanggan/user.
+Karena di era saat ini yang kebanyakan kegiatan dapat dilakukan secara *online*, maka sistem rekomendasi dapat digunakan untuk meningkatkan kepuasan pelanggan dan juga meningkatkan aktivitas *user*, yang dapat berperan penting dalam membuat instansi atau perusahaan untuk meningkatkan kepuasan pelanggan dan juga meningkatkan pendapatan perusahaan, dengan menawarkan rekomendasi yang tepat bagi pelanggan/*user*. Sehingga sistem rekomendasi sangatlah penting, dimana pada kasus ini adalah rekomendasi untuk buku yang dibaca oleh pelanggan/*user*.
 
-Permasalah tersebut dapat diatasi dengan melakukan pembuatan *machine learning* yang dapat melakukan rekomendasi berdasrkan beberapa fitur dari buku dengan melakukan pembuatan rekomendasi berdasrkan penulis buku dan rating buku menggunakan rekomendasi berbasi konten (*content based*) dan berbasis rating dari pelanggan/user menngunakan filter kolaborasi (*collaborative filtering*).
-
-Variabel yang digunakan pada sistem rekomendasi berbasis konten (*content based*) adalah:
-- Judul Buku
-- Penulis Buku
-- Rating Buku
-Dan variabel yang digunakan pada sistem rekomendasi berbasis kolaborasi (*collaborative filtering*) adalah:
-- Rating buku
-- User/pelanggan
-
-Adapun referensi yang digunakan dalam pembuatan proyek ini yaitu:
-
-Jurnal Pertama
-- Jurnal: ***Book Recommendation System through content based and collaborative filtering method***
-- Authors: P. Mathew, B. Kuriakose dan V. Hegde
-- *International Conference on Data Mining and Advanced Computing (SAPIENCE)*
-- Di Terbitkan pada 12 Desember 2016
-
-Jurnal Kedua
-- Jurnal: ***Machine Learning based Efficient Recommendation System for Book Selection using User based Collaborative Filtering Algorithm***
-- Authors: M. Kommineni, P. Alekhya, T. M. Vyshnavi, V. Aparna, K. Swetha and V. Mounika
-- *2020 Fourth International Conference on Inventive Systems and Control (ICISC)*
-- Di Terbitkan pada 19 Agustuws 2020
-
-
-
+Permasalah tersebut dapat diatasi dengan melakukan pembuatan *machine learning* yang dapat melakukan rekomendasi berdasarkan beberapa fitur dari buku dengan melakukan pembuatan rekomendasi berdasrkan penulis buku dan *rating* buku menggunakan rekomendasi berbasi konten (*content based*) dan berbasis *rating* dari pelanggan/*user* menngunakan filter kolaborasi (*collaborative filtering*).
 
 ## Business Understanding
 
@@ -40,7 +15,7 @@ Pada era saat ini dimana banyak kegiatan dapat dilakukan secara online, dimulai 
 ### Problem Statements
 
 Seperti yang telah disebutkan dalam latar belakang permasalahan, maka terdapat beberapa masalah yang harus dipecahkan, yaitu:
-- Bagaimana cara membuat sistem rekomendasi agar sistem rekomendasi tersebut dapat digunakan dalam memberikan rekomendasi yang sesuai dengan pelanggan/user.
+- Bagaimana cara membuat sistem rekomendasi agar sistem rekomendasi tersebut dapat digunakan dalam memberikan rekomendasi yang sesuai dengan pelanggan/*user*.
 - Algoritma mana yang tepat untuk melakukan pembuatan sistem rekomendasi.
 - Fitur-fitur mana yang tepat untuk membuat sistem rekomendasi.
 
@@ -48,27 +23,27 @@ Seperti yang telah disebutkan dalam latar belakang permasalahan, maka terdapat b
 
 Setelah permasalahan diketahui, maka harus memiliki tujuan dalam menyelesaikan permasalah tersebut, dan permasalah tersebut dapat diselesaikan dengan:
 - Membuat sistem rekomendasi menggunakan *machine learning* dengan bahasa pemrograman python.
-- Memilih algoritma yang tepat dalam membuat rekomendasi berbasis konten dan berbasis rating dari pelanggan/user.
+- Memilih algoritma yang tepat dalam membuat rekomendasi berbasis konten dan berbasis *rating* dari pelanggan/*user*.
 - Memilih fitur-fitur yang baik dan sesuai dengan algoritma yang digunakan, untuk menghasilkan sistem rekomendasi yang baik dan tepat.
 
 ### Solution statements
 
 - Memilih algoritma sistem rekomendasi berbasis konten dari buku dan personalisasi dari pelanggan.
 - Menggunakan algoritma *Content Based* dan *Collaborative Filtering* dalam penyelesaian permasalahan yang ada.
-- Menggunakan algoritma *Content Based* dengan bebrapa proses preparasi berupa membuat *bag of words*, vektoriasasi kata, dan menggunakan ukuran kesamaan beruapa *cosine similarity*, dan untuk algoritma *Collaborative Filtering* menggunakan RecommenderNet, dan memilih fitur rating sebagai fitur utama pada model.
+- Menggunakan algoritma *Content Based* dengan bebrapa proses preparasi berupa membuat *bag of words*, vektoriasasi kata, dan menggunakan ukuran kesamaan beruapa *cosine similarity*, dan untuk algoritma *Collaborative Filtering* menggunakan RecommenderNet, dan memilih fitur *rating* sebagai fitur utama pada model.
 
 
 
 ## Data Understanding
 Data set yang digunakan merupakan data yang berada pada repository github yang dimiliki oleh **zygmuntz**, dengan nama data set yaitu **"goodbooks-10k"**.
-Data set tersebut merupakan data yang di **scraping** dari [https://www.goodreads.com/](https://www.goodreads.com). data set ini memiliki 6 juta rating untuk 10 ribu buku paling populer.
+Data set tersebut merupakan data yang di **scraping** dari [https://www.goodreads.com/](https://www.goodreads.com). data set ini memiliki 6 juta *rating* untuk 10 ribu buku paling populer.
 
 Informasi data sebagai berikut:
-- Rating buku bernilai antara 1 sampai dengan 5.
-- Data set *books.csv* memiliki 10 ribu *book_id*, dan data set *ratings.csv* memiliki 53424 *user_id*, dimana setiap user setidaknya telah melakukan rating untuk dua buku.
+- *Rating* buku bernilai antara 1 sampai dengan 5.
+- Data set *books.csv* memiliki 10 ribu *book_id*, dan data set *ratings.csv* memiliki 53424 *user_id*, dimana setiap *user* setidaknya telah melakukan *rating* untuk dua buku.
 - Pada data set ini pun juga memiliki variabel-variabel berupa, buku yang telah di tandai untuk dibaca, metadata dari buku (author, tahun, dll) dan juga tag dari buku.
 - Pada data set *to_read.csv* memiliki *book_id* dari setiap buku yang telah ditandai oleh *user_id*.
-- *book_tags.csv* memiliki nilai *tags* yang telah di masukan oleh user, yang disimpan dalam *tag_id*.
+- *book_tags.csv* memiliki nilai *tags* yang telah di masukan oleh *user*, yang disimpan dalam *tag_id*.
 - *tags.csv* menerjemahkan *tag_id* menjadi nama dari *tags*.
 
 Sumber data dapat diakses pada [goodbooks-10k repositroy oleh zygmuntz](https://github.com/zygmuntz/goodbooks-10k)
@@ -87,40 +62,51 @@ Sumber data dapat diakses pada [goodbooks-10k repositroy oleh zygmuntz](https://
     - original_title: judul buku (string)
     - title: judul pada situs **goodreads**
     - language_code: kode bahasa yang digunakan pada buku (string)
-    - average rating: rata-rata dari rating buku (float)
-    - ratings_count: jumlah rating yang diberikan oleh user untuk setiap buku (integer)
-    - work_ratings_counts: jumlah rating (integer)
+    - average rating: rata-rata dari *rating* buku (float)
+    - ratings_count: jumlah rating yang diberikan oleh *user* untuk setiap buku (integer)
+    - work_ratings_counts: jumlah *rating* (integer)
     - work_text_reviews_count: jumlah banyaknya review untuk setiap buku (integer)
-    - rating_1: jumlah rating dengan nilai 1 (integer)
-    - rating_2: jumlah rating dengan nilai 2 (integer)
-    - rating_3: jumlah rating dengan nilai 3 (integer)
-    - rating_4: jumlah rating dengan nilai 4 (integer)
-    - rating_5: jumlah rating dengan nilai 5 (integer)
+    - rating_1: jumlah *rating* dengan nilai 1 (integer)
+    - rating_2: jumlah *rating* dengan nilai 2 (integer)
+    - rating_3: jumlah *rating* dengan nilai 3 (integer)
+    - rating_4: jumlah *rating* dengan nilai 4 (integer)
+    - rating_5: jumlah *rating* dengan nilai 5 (integer)
     - image_url: url dari cover buku (string)
     - small_image_url: url untuk cover buku dengan ukuran kecil (string)
 - rating.csv
     - book_id: id dari buku pada situs **goodreads** (integer)
     - user_id: id dari setiap pelanggan (integer)
-    - rating: rating yang diberikan oleh setiap user untuk setiap buku, dengan nilai antara 1 sampai dengan 5 (integer)
+    - rating: *rating* yang diberikan oleh setiap *user* untuk setiap buku, dengan nilai antara 1 sampai dengan 5 (integer)
+
+- Variabel yang digunakan pada sistem rekomendasi berbasis konten (*content based*) adalah:
+    - Judul Buku
+    - Penulis Buku
+    - *Rating* Buku
+- Variabel yang digunakan pada sistem rekomendasi berbasis kolaborasi (*collaborative filtering*) adalah:
+    - *Rating* buku
+    - *User*/pelanggan
 
 ### Visualisasi Data
 Melakukan *Exploratory Data Anlysis* menggunakan library pandas, yaitu berupa
 - Melihat sturuktur data dari 2 data set dengan contoh data sebagai berikut:
     - books.csv
- 
-| id | book_id | best_book_id | work_id | books_count | authors                         | original_public<br>ation_year | original_title                              | title                                                          | ... |
+
+Tabel 1. sampel data set buku
+| id | book_id | best_book_id | work_id | books_count | authors                         | original_publiction_year | original_title                              | title                                                          | ... |
 |----|---------|--------------|---------|-------------|---------------------------------|-------------------------------|---------------------------------------------|----------------------------------------------------------------|-----|
-| 1  | 2767052 | 2767052      | 2792775 | 272         | Suzanne Collins                 | 2008                          | The Hunger Games                            | The Hunger Games<br>(The Hunger Games, #1)                     | ... |
-| 2  | 3       | 3            | 4640799 | 491         | J.K. Rowling,<br>Mary GrandPrÃ© | 1997                          | Harry Potter and<br>the Philosopher's Stone | Harry Potter and<br>the Sorcerer's Stone<br>(Harry Potter, #1) | ... |
+| 1  | 2767052 | 2767052      | 2792775 | 272         | Suzanne Collins                 | 2008                          | The Hunger Games                            | The Hunger Games (The Hunger Games, #1)                     | ... |
+| 2  | 3       | 3            | 4640799 | 491         | J.K. Rowling,Mary GrandPrÃ© | 1997                          | Harry Potter and the Philosopher's Stone | Harry Potter and the Sorcerer's Stone (Harry Potter, #1) | ... |
 | 3  | 41865   | 41865        | 3212258 | 226         | Stephenie Meyer                 | 2005                          | Twilight                                    | Twilight (Twilight, #1)                                        | ... |
 | 4  | 2657    | 2657         | 3275794 | 487         | Harper Lee                      | 1960                          | To Kill a Mockingbird                       | To Kill a Mockingbird                                          | ... |
 | 5  | 4671    | 4671         | 245494  | 1356        | F. Scott Fitzgerald             | 1925                          | The Great Gatsby                            | The Great Gatsby                                               | ... |
 
-        
-   - Informasi dari data set
-    
-        RangeIndex: 10000 entries, 0 to 9999
+Pada Tabel.1 merupakan sampel data dari books.csv 
 
+   - Informasi dari data set
+ 
+        Tabel.2 informasi data set buku
+        
+        RangeIndex: 10000 entries, 0 to 9999
         | #  | Column                    | Non-Null Count | Dtype   |
         |----|---------------------------|----------------|---------|
         | 0  | id                        | 10000 non-null | int64   |
@@ -146,26 +132,14 @@ Melakukan *Exploratory Data Anlysis* menggunakan library pandas, yaitu berupa
         | 20 | ratings_5                 | 10000 non-null | int64   |
         | 21 | image_url                 | 10000 non-null | object  |
         | 22 | small_image_url           | 10000 non-null | object  |
+        dtypes: float64(3), int64(13), object(7)
+        memory usage: 1.8+ MB
 
-dtypes: float64(3), int64(13), object(7)
-memory usage: 1.8+ MB
-        
-   - Mencari nilai statsitik dari data set
+        Pada Tabel.2 terdapat beberapa values yang null yang dari beberapa variabel, seperti isbn13 yang dikarenakan buku tersebut merupakan buku lama, sehingga belum memiliki nilai isbn13 (ISBN terbaru), dan juga variabel *original_publication_year*, *language_code*, dan *original_title*.
 
-        |       |        Count |  Probability |
-        |------:|-------------:|-------------:|
-        | count | 1.472690e+05 | 1.472690e+05 |
-        |  mean | 2.481161e+03 | 6.790295e-06 |
-        |  std  | 4.645472e+04 | 1.271345e-04 |
-        |  min  | 1.000000e+00 | 2.736740e-09 |
-        |  25%  | 5.000000e+00 | 1.368370e-08 |
-        |  50%  | 1.700000e+01 | 4.652460e-08 |
-        |  75%  | 1.320000e+02 | 3.612500e-07 |
-        |  max  | 5.304407e+06 | 1.451679e-02 |
-
-
-   - rating.csv
+   - ratings.csv
  
+        Tabel.3 sampel *rating* data set
         |   | book_id | user_id | rating |
         |--:|--------:|--------:|-------:|
         | 0 |       1 |     314 |      5 |
@@ -176,8 +150,9 @@ memory usage: 1.8+ MB
         
    - Informasi dari data set
     
+        Tabel.4 informasi data set *ratings*
+        
         RangeIndex: 981756 entries, 0 to 981755
-
         | #  | Column                    | Non-Null Count  | Dtype   |
         |----|---------------------------|-----------------|---------|
         | 0  | book_id                   | 981756 non-null | int64   |
@@ -187,8 +162,9 @@ memory usage: 1.8+ MB
         dtypes: int64(3)
         memory usage: 1.8+ MB
         
-- Menghitung jumlah rating buku berdasrkan user.
-
+- Menghitung jumlah *rating* buku berdasrkan *user*.
+    
+    Tabel 5. jumlah setiap rating
     | rating | count  |
     |-------:|-------:|
     |    1   |  19485 |
@@ -196,9 +172,12 @@ memory usage: 1.8+ MB
     |    3   | 247698 |
     |    4   | 355878 |
     |    5   | 291198 |
+    
+    Pada Tabel.5 Nilai *rating* yang paling sering diberikan adalah nilai rating 4.
 
-- Mencari buku dengan nilai rating 0 atau tidak di rating.
+- Mencari buku dengan nilai *rating* 0 atau tidak di *rating*.
 
+    Tabel.6 buku dengan nilai *rating null*
     |     |     count | log_count |
     |----:|----------:|----------:|
     | 0.0 | 532822731 | 20.093699 |
@@ -208,10 +187,17 @@ memory usage: 1.8+ MB
     | 4.0 |    355878 | 12.782343 |
     | 5.0 |    291198 | 12.581759 |
 
-![book-rating-count](https://user-images.githubusercontent.com/105812169/204170154-61afb28e-bebe-4435-9379-75934b6bdca8.png)
+    Pada Tabel.6 terdepat banyak buku yang tidak memiliki *rating* sehingga perlu di keluarkan dalam pembuatan model, khususnya pada model *Collaborative Filtering*.
+    
+    ![book-rating-count](https://user-images.githubusercontent.com/105812169/204170154-61afb28e-bebe-4435-9379-75934b6bdca8.png)
+    
+    Gambar.1 buku dengan nilai *rating null*
+    
+    Pada Gambar.1 dapat dilihat lebih jelas bahwa nilai rating 0 memiliki jumlah yang banyak dan perlu dihilangkan.
+    
+- Menghitung banyaknya *rating* untuk setiap buku.
 
-- Menghitung banyaknya rating untuk setiap buku.
-
+    Tabel.7 jumlah *rating* untuk setiap buku
     | book_id | count |
     |--------:|------:|
     |    1    |  100  |
@@ -220,8 +206,11 @@ memory usage: 1.8+ MB
     |    4    |  100  |
     |    5    |  100  |
 
-- Menghitung banyaknya rating yang diberikan oleh user
+    Pada Tabel.7 dapat dilihat bahwa maksimal satu bulu memiliki *rating* sebanyak 100 *rating*.
+    
+- Menghitung banyaknya *rating* yang diberikan oleh *user*
 
+    Tabel.8 jumlah *rating* yang diberikan *user*
     | user_id | count |
     |--------:|------:|
     |    1    |   3   |
@@ -230,9 +219,12 @@ memory usage: 1.8+ MB
     |    4    |   3   |
     |    5    |   3   |
 
-Melakukan visualisasi data menggunakan library matplotlib dan seaborn untuk memahami data lebih jauh, dengan visualisasi sebagai berikut:
-- Top 10 dengan nilai rating tertinggi
+    Pada Tabel.9 dapat dilihat bahwa terdapat *user* yang memberi *rating* hanya sedikit, ini akan berpengaruh terhadap model *Collaborative Filtering*.
+    
+Melakukan visualisasi data menggunakan *library matplotlib*, *seaborn* dan *plotly* untuk memahami data lebih jauh, dengan visualisasi sebagai berikut:
+- Top 10 dengan nilai *rating* tertinggi
 
+    Tabel.9 Top 10 buku berdasarkan *rating*
     |                           title                             |   cover book   |
     |:-----------------------------------------------------------:|:--------------:|
     |                The Complete Calvin and Hobbes               | ![top10-1](https://images.gr-assets.com/books/1473064526s/24812.jpg) |
@@ -246,8 +238,10 @@ Melakukan visualisasi data menggunakan library matplotlib dan seaborn untuk mema
     |         Harry Potter Collection (Harry Potter, #1-6)        | ![top10-9](https://images.gr-assets.com/books/1328867351s/10.jpg) |
     |             The Indispensable Calvin and Hobbes             | ![top10-10](https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png) |
 
+    Pada Tabel.9 dapat dilihat memang buku-buku yang memiliki *rating* tinggi merupakan buku-buku yang bagus.
 - Top 10 buku terpopuler
 
+    Tabel.10 Top 10 buku terpopuler
     |                           title                          |   cover book   |
     |:--------------------------------------------------------:|:--------------:|
     |          The Hunger Games (The Hunger Games, #1)         | ![pop10-1](https://images.gr-assets.com/books/1447303603s/2767052.jpg) |
@@ -261,24 +255,31 @@ Melakukan visualisasi data menggunakan library matplotlib dan seaborn untuk mema
     |                    Pride and Prejudice                   | ![pop10-9](https://images.gr-assets.com/books/1320399351s/1885.jpg) |
     |           Angels & Demons (Robert Langdon, #1)           | ![pop10-10](https://images.gr-assets.com/books/1303390735s/960.jpg) |
 
+    Pada Tabel.10 dapat dilihat bahwa buku yang populer, merupakan buku yang sering kita dengar dan mungkin pernah kita baca.
+    
+- Distribusi nilai *rating* oleh *user* yang diberikan kepada buku
 
-- Distribusi nilai rating oleh user yang diberikan kepada buku
+    ![book-distribution](https://user-images.githubusercontent.com/105812169/204145974-c965c22c-abe5-48cf-835d-a64051aeb204.png)
+    
+    Gambar.2 distribusi *rating*
+    
+    Pada Gambar 3.2 dapat dilihat bahwa sebaran dari *rating* berada antara *rating* 3.5 dan 4.0
 
-![book-distribution](https://user-images.githubusercontent.com/105812169/204145974-c965c22c-abe5-48cf-835d-a64051aeb204.png)
+- Penulis buku dengan rata-rata *rating* tertinggi
 
+    ![author-rating](https://user-images.githubusercontent.com/105812169/204146061-32e77cec-2b6e-4d2b-a962-f3b637696991.png)
+    
+    Gambar.3 *rating* penulis buku
+    
+    Dapat diilihat pada Gambar.3 Bill Waterson memiliki nilai *rating* sangat tinggi sebesar 4.82.
+    
+- Buku yang *user* ingin baca, yang masuk kedalam *wishlist user*
 
-- Penulis buku dengan rata-rata rating tertinggi
-
-![author-rating](https://user-images.githubusercontent.com/105812169/204146061-32e77cec-2b6e-4d2b-a962-f3b637696991.png)
-
-
-- Buku yang user ingin baca, yang masuk kedalam *wishlist* user
-
-![wishlist-book](https://user-images.githubusercontent.com/105812169/204146124-67405cb1-870b-4b33-8e35-eda65accc74e.png)
-
-
-Berdasarkan dari visual diatas dapat disimpulkan bahwa rating paling banyak berada di antara rating 3.5 dan 4, dan pada gambar kedua, Bill Waterson memiliki nilai rating yang sangat tinggi sebesar 4.82, dan buku yang ingin dibaca oleh user merupakan buku-buku yang sering kita dengar seperti Harry Potter dan Lord of the Rings.
-
+    ![wishlist-book](https://user-images.githubusercontent.com/105812169/204146124-67405cb1-870b-4b33-8e35-eda65accc74e.png)
+    
+    Gambar.4 *whishlist* buku oleh *user*
+    
+    Pada Gambar.4 Buku yang ingin dibaca oleh *user* merupakan buku-buku yang sering kita dengar seperti Harry Potter dan Lord of the Rings.
 
 ## Data Preparation
 
@@ -289,6 +290,7 @@ Tahapan yang dilakukan dalam penyelesaian masalah atau pembuatan sistem rekomend
 - Menghilangkan 849 duplikasi data pada books.csv
 - Membuat semua nilai di books.csv menjadi *lower case* dan menghilangkan data yang tidak ada
 
+    Tabel.11 fitur dalam *lower case*
     |   |                      original_title |           average_rating | average_rating |
     |--:|------------------------------------:|-------------------------:|---------------:|
     | 0 |                      thehungergames |           suzannecollins |           4.34 |
@@ -297,8 +299,11 @@ Tahapan yang dilakukan dalam penyelesaian masalah atau pembuatan sistem rekomend
     | 4 |                      thegreatgatsby |        f.scottfitzgerald |           3.89 |
     | 5 |                  thefaultinourstars |                johngreen |           4.26 |
 
+    Pada Tabel.11 membuat 3 variabel menjadi lower case dan menghilangkan *whitespace*
+    
 - Membuat bag of words yang akan digunakan sebagai fitur rekomendasi konten dengan menggabungkan variabel original_title, authors, dan average_rating menjadi satu *soup*, dengan hasil seperti tabel dibawah ini. Hal ini dilakukan karena fitur genre tidak diketahui maka perlu dibaut fitur yang dapat membuat content based filtering menjadi tepat.
 
+    Tabel.12 *bag of words* berupa soap
     |       | index |                  original_title |           authors | average_rating | soup                                                   |
     |------:|---------------:|------------------------------------:|-------------------------:|-----:|---------------------------------------------------|
     |   0   |              0 |                      thehungergames |           suzannecollins | 4.34 |                thehungergames suzannecollins 4.34 |
@@ -310,11 +315,12 @@ Tahapan yang dilakukan dalam penyelesaian masalah atau pembuatan sistem rekomend
 
 ### **Collaborative Filtering**
 
-Tahapan yang dilakukan dalam penyelesaian masalah atau pembuatan sistem rekomendasi berbasis kolaborasi user, dan dilakukan beberapa tahap preparasi data, yaitu sebagai berikut:
+Tahapan yang dilakukan dalam penyelesaian masalah atau pembuatan sistem rekomendasi berbasis kolaborasi *user*, dan dilakukan beberapa tahap preparasi data, yaitu sebagai berikut:
     
 - Menghilangkan null values dari book_id dan original_title.
-- Menghilangkan buku yang tidak di rating atau memilki rating 0, dengan mengambil buku yang telah dilakukan rating sebanyak 50 kali, hasil ini dilakukan karena untuk mencari tahu reaksi antara user terhadap buku-buku.
-    
+- Menghilangkan buku yang tidak di *rating* atau memilki *rating* 0, dengan mengambil buku yang telah dilakukan *rating* sebanyak 50 kali, hasil ini dilakukan karena untuk mencari tahu reaksi antara *user* terhadap buku-buku.
+
+    Tabel.13 buku dengan nilai *rating null*
     |     |     count | log_count |
     |----:|----------:|----------:|
     | 0.0 | 532822731 | 20.093699 |
@@ -324,9 +330,10 @@ Tahapan yang dilakukan dalam penyelesaian masalah atau pembuatan sistem rekomend
     | 4.0 |    355878 | 12.782343 |
     | 5.0 |    291198 | 12.581759 |
    
-- Menghilangan user yang melakukan pemberian rating dibawah 50 kali, untuk mencari tahu interaksi antara user terhadap buku-buku.
-- Membuat dataframe baru berdasarkan buku yang telah dihilangkan rating 0 dan user yang telah melakukan rating diatas 50 kali.
- 
+- Menghilangan *user* yang melakukan pemberian *rating* dibawah 50 kali, untuk mencari tahu interaksi antara *user* terhadap buku-buku.
+- Membuat dataframe baru berdasarkan buku yang telah dihilangkan *rating* 0 dan *user* yang telah melakukan *rating* diatas 50 kali.
+
+    Tabel.14 *dataframe* baru 
     |       | book_id | user_id | rating | original_title                         |
     |------:|--------:|--------:|-------:|----------------------------------------|
     |   0   |       1 |     314 |      5 | Harry Potter and the Half-Blood Prince |
@@ -340,8 +347,9 @@ Tahapan yang dilakukan dalam penyelesaian masalah atau pembuatan sistem rekomend
     | 33260 |    9998 |   25988 |      5 |                  砂の女 [Suna no onna] |
     | 33261 |    9998 |   31162 |      3 |                  砂の女 [Suna no onna] |
     | 33262 |    9998 |   52330 |      4 |                   砂の女 [Suna no onna |
+    33263 rows × 4 columns
 
-33263 rows × 4 columns
+    Pada Tabel.14 memiliki jumlah baris sebanyak 33263, yang telah direduksi akibat dari pembersihan data, sehingga ketika data dilakukan training akan lebih baik.
 
 - Melakukan random data pada dataframe yang akan dilkaukan pemisahan menjadi train dan validation.
 - Melakukan pemisahan data menjadi train dan validation data, dengan ukuran training sebsar 80% dari data set
@@ -349,15 +357,15 @@ Tahapan yang dilakukan dalam penyelesaian masalah atau pembuatan sistem rekomend
 
 ## Modeling and Result
 ### **Content Based Model**
-Model ini merupakan, model yang digunakan untuk membuat sistem rekomendasi yang akan melakukan penebakan dari user, berdasarkan aktivitas dari user, dengan menggunakan keywords dan atribut yang di sematkan pada objek, contohnya pada kasus ini adalah judul buku, author, dan rata-rata rating, dan melakukan pencocokan terhadap profil dari user.
+Model ini merupakan, model yang digunakan untuk membuat sistem rekomendasi yang akan melakukan penebakan dari *user*, berdasarkan aktivitas dari *user*, dengan menggunakan keywords dan atribut yang di sematkan pada objek, contohnya pada kasus ini adalah judul buku, author, dan rata-rata *rating*, dan melakukan pencocokan terhadap profil dari *user*.
 
 Adapun kelebihan dan kekurangan Content Based Model adalah sebagai berikut:
 - Kelebihan
-    - Model ini memiliki kelebihan karena tidak perlunya data dari user untuk membuat sistem rekomendasi.
-    - Kemungkinan relevansi terhadap keinginan user cukup tinggi, karena rekomendasi dapat sesuai dengan keinginan user.
+    - Model ini memiliki kelebihan karena tidak perlunya data dari *user* untuk membuat sistem rekomendasi.
+    - Kemungkinan relevansi terhadap keinginan *user* cukup tinggi, karena rekomendasi dapat sesuai dengan keinginan *user*.
     - Mudah dalam pembuatan.
 - Kekurangan
-    - Model hanya dapat membuat rekomendasi berbasis ketertarikan user, sehingga model akan kaku jiga ingin membuat rekomendasi diluar ketertarikan user.
+    - Model hanya dapat membuat rekomendasi berbasis ketertarikan *user*, sehingga model akan kaku jiga ingin membuat rekomendasi diluar ketertarikan *user*.
 
 Model yang digunakan menggunakan library scikit-learn dengan algoritma sebagai berikut:
 - TfidfVectorizer, Mengubah data text menjadi vector agar bisa dilakukan klasifikasi. Hal ini dilakukan untuk memudahkan dalam training, karena data yang tadinya string diubah menjadi bigram blocks dari karakter, dan merubahnya kedalam matrix.
@@ -368,7 +376,8 @@ Model yang digunakan menggunakan library scikit-learn dengan algoritma sebagai b
     - k: Banyaknya rekomendasi yang diberikan.
     - indicies: list dari fitur untuk rekomendasi berdasarkan kesamaan, dalam hal ini adalah 'original_title'.
 - Melakukan testing terhadap model rekomendasi yang dibuat, dengan input judul buku **The Hobbit**, dan menghasilkan Top 10 rekomendasi yaitu,
-    
+
+    Tabel.15 hasil rekomendasi percobaan pertama
     |    | Books Recommendation based on The Hobbit |
     |---:|-----------------------------------------:|
     |  1 |       The Hobbit or There and Back Again |
@@ -382,18 +391,19 @@ Model yang digunakan menggunakan library scikit-learn dengan algoritma sebagai b
     |  9 |                                     Next |
     | 10 |                    The Children of Húrin |
 
+    Pada Tabel.15 dapat dilihat beberapa buku yang tepat sesuai dengan buku yang dicari yaitu **The Hobbit**, seperti The Lord of the Ring, The Childern of Hurin, dan The Two Towers.
 
 ### **Collaborative Filtering Model**
-Collaborative filtering bergantung pada komuntias dari user. Ia tidak memerlukan atribut untuk setiap itemnya seperti pada sistem berbasis konten. Collaborative filtering. Collaborative filtering berdasarkan dari interaksi masa lalu antara user dan item (buku), sehingga user akan diberi rekomendasi dari user-user yang serupa.
+Collaborative filtering bergantung pada komuntias dari *user*. Ia tidak memerlukan atribut untuk setiap itemnya seperti pada sistem berbasis konten. Collaborative filtering. Collaborative filtering berdasarkan dari interaksi masa lalu antara *user* dan item (buku), sehingga *user* akan diberi rekomendasi dari *user* yang serupa.
 
 Adapun kelebihan dan kekurangan Collaborative filtering Model adalah sebagai berikut:
 - Kelebihan
     - Tidak membutuhkan domain knowledge dari atribut yang ada.
-    - Model dapat membuat user menemupakn minat baru, karena berdasarkan history dari user-user lain.
+    - Model dapat membuat *user* menemupakn minat baru, karena berdasarkan history dari *user* lain.
 - Kekurangan
-    - TIdak dapat melakukan rekomendasi dari item (buku) yang baru, karena belum terjadi interaksi antara item dan user.
+    - TIdak dapat melakukan rekomendasi dari item (buku) yang baru, karena belum terjadi interaksi antara item dan *user*.
 - Model yang digunakan menggunakan class model pada library Keras dan, dengan algoritma yang digunakan adalah RecommenderNet.
-    - RecommenderNet bekerja dengan melakukan embedding user dan buku kedala vektor 50 dimensi, model ini menghitung skor kecocokan antara embed buku melalui titik, dan menambahkan bias untuk setiap buku dan setiap user, skor kesamaan memiliki skala antara 0 dan 1 dengan sigmoid.
+    - RecommenderNet bekerja dengan melakukan embedding *user* dan buku kedala vektor 50 dimensi, model ini menghitung skor kecocokan antara embed buku melalui titik, dan menambahkan bias untuk setiap buku dan setiap *user*, skor kesamaan memiliki skala antara 0 dan 1 dengan sigmoid.
 - Compile Model, dengan menggunakan parameter:
     - loss, dengan BinaryCrossentropy
     - optimizer, menggunakan Adam Optimizer dengan learning rate 0.001
@@ -417,7 +427,7 @@ Epoch 100/100
 ```
 
 - Melakukan testing terhadap model collaborative filtering yang telah dibuat, dengan hasil sebagai berikut:
-    - Mengambil user random dan memperlihatkan rekomendasi untuk user tersebut berdasarakan buku yang ia baca
+    - Mengambil *user* random dan memperlihatkan rekomendasi untuk *user* tersebut berdasarakan buku yang ia baca
         ```
         Showing recommendations for users: 32592
 
@@ -470,17 +480,21 @@ Epoch 100/100
 Metrik yang digunakan pada model ini adalah precision dimana rumus precision adalah:
 - Precision = Rekomendasi yang relevan / Rekomendasi yang diberikan
 - Dengan hasil precision sebesar 70%
-- Precison diambil dari relevansi antara authors dan rating yang sesuai dengan buku yang dipilih
+- Precison diambil dari relevansi antara *authors* dan *rating* yang sesuai dengan buku yang dipilih
 
 #### Evaluasi Pertama
 - Buku yang dicari rekomedasinya
 
+    Tabel.16 buku yang dicari rekomendasi pertama
     |   |              original_title |                                                authors | average_rating |
     |--:|----------------------------:|-------------------------------------------------------:|---------------:|
     | 0 |   The Hobbit                | Chuck Dixon, J.R.R. Tolkien, David Wenzel, Sean Deming |           4.25 |
 
+    Pada Tabel.16 buku **The Hobbit** memiliki 4 penulis buku.
+    
 - Rekomedasi
 
+    Tabel.17 rekomendasi buku berdasarkan buku yang dicari pertama
     |   |                       original_title |                                       authors | average_rating |
     |--:|-------------------------------------:|----------------------------------------------:|---------------:|
     | 0 |   The Hobbit or There and Back Again |                                J.R.R. Tolkien |           4.25 |
@@ -493,8 +507,8 @@ Metrik yang digunakan pada model ini adalah precision dimana rumus precision ada
     | 7 |                     The Tenth Circle |                                  Jodi Picoult |           3.48 |
     | 8 |                                 Next |                              Michael Crichton |           3.48 |
     | 9 |                The Children of Húrin | J.R.R. Tolkien, Christopher Tolkien, Alan Lee |           3.94 |
-
-Pada evaluasi pertama terdapat ketidaksesuaian dari judul buku dan authors, karena kita tidak memiliki genre sebagai fitur untuk melakukan rekomendasi maka, rekomendasi yang diberikan kemungkinan belum tepat presisisnya, dan pada buku yang dicari rekomendasinya memiliki 5 author yang akan berpengaruh untuk hasil rekomendasi.
+    
+    Pada Tabel.17 evaluasi pertama terdapat ketidaksesuaian dari judul buku dan authors, karena kita tidak memiliki genre sebagai fitur untuk melakukan rekomendasi maka, rekomendasi yang diberikan kemungkinan belum tepat presisisnya, dan pada buku yang dicari rekomendasinya memiliki 5 author yang akan berpengaruh untuk hasil rekomendasi.
 
 Karena kita harus tahu terlebih dahulu konteks dalam buku tersebut untuk menilai apakah rekomendasi sudah benar atau tidak, dan perlu pengetahuan dari orang yang memiliki pengetahuan antara buku hasil rekomendasi diatas sudah presisi atau belum.
 
@@ -511,12 +525,14 @@ Presisi yang dihaislkan dari rekomendasi sebsar 70%
 #### Evaluasi Kedua
 - Buku yang dicari rekomedasinya
 
+    Tabel.18 buku yang dicari rekomendasi kedua
     |   |              original_title |          authors | average_rating |
     |--:|----------------------------:|-----------------:|---------------:|
     | 0 |   Jurassic Park             | Michael Crichton |           3.96 |
 
 - Rekomedasi
 
+    Tabel.19 rekomendasi buku berdasarkan buku yang dicari kedua
     |   |          original_title |          authors | average_rating |
     |--:|------------------------:|-----------------:|---------------:|
     | 0 |          The Lost World | Michael Crichton |           3.72 |
@@ -529,8 +545,8 @@ Presisi yang dihaislkan dari rekomendasi sebsar 70%
     | 7 |                    Prey | Michael Crichton |           3.72 |
     | 8 |           State of Fear | Michael Crichton |           3.69 |
     | 9 |                Airframe | Michael Crichton |           3.66 |
-
-Pada evalusi kedua menghasilkan presisi yang baik karena author dari buku yang dicari hanya satu dan pada database author tersebut memiliki lebih dari 10 buku, sehingga rekomendasi akan diberikan berdasarkan author tersebut dengan nilai presisi sebesar 100%
+    
+    Pada Tabel.19 evalusi kedua menghasilkan presisi yang baik karena author dari buku yang dicari hanya satu dan pada database author tersebut memiliki lebih dari 10 buku, sehingga rekomendasi akan diberikan berdasarkan author tersebut dengan nilai presisi sebesar 100%.
 
 
 ## Collaborative Filtering
@@ -544,25 +560,26 @@ Rumus untuk menghitung RMSE adalah sebagai berikut:
 
 ![RMSE](https://user-images.githubusercontent.com/105812169/204192286-1b6ee340-e212-48b5-9120-91491ddeb1ec.jpg)
 
-Dimana,
+Gambar 5. rumus RMSE
+
+Pada Gambar.5 memiliki parameter-parameter berupa:
 - *predicted i* = Nilai prediksi dari itkerasi ke-i
 - *actual i* = Nilai aktual yang di observasi pada iterasi ke-i
 - N = Total jumlah dari observasi
-
-Perbedaan antara prediksi dan aktual adalah residual.
-
-Dan pada gambar dibawah ini merupakan nilai RMSE dari iterasi ke-1 hingga iterasi ke-100
+    ```
+    "Perbedaan antara prediksi dan aktual adalah residual.""
+    ```
 
 ![collaborative-metrics](https://user-images.githubusercontent.com/105812169/204176964-211f853d-b9e6-4345-9958-1cdfaa1e9458.png)
 
-Pada gambar diatas dapat dilihat bahwa nilai RMSE untuk set training menyentuh titik *steady state* pada iterasi ke 45 dan untuk set validasi menyentuh titik *steady state* pada iterasi ke 20, diatas iterasi tersebut, nilai RMSE tidak berubah secara signifikan.
+Gambar.6 grafik RMSE hingga iterasi ke-100
+
+Pada Gambar.6 diatas dapat dilihat bahwa nilai RMSE untuk set training menyentuh titik *steady state* pada iterasi ke 45 dan untuk set validasi menyentuh titik *steady state* pada iterasi ke 20, diatas iterasi tersebut, nilai RMSE tidak berubah secara signifikan.
 
 Dengan nilai RMSE pada iterasi ke terakhir sebesar 0.17 untuk set training dan 0.23 untuk set validasi, dimana nilai ini cukup bagus karena berada di sekitar 0.1 sampai dengan 0.5. Sehingga model yang kita buat dapat melakukan rekomendasi.
 
 
-
-
-
 ## Referensi:
-- [*T. Anwar, V. Uma and Shahjad, "Book Recommendation for eLearning Using Collaborative Filtering and Sequential Pattern Mining," 2020 International Conference on Data Analytics for Business and Industry: Way Towards a Sustainable Economy (ICDABI), 2020*](https://ieeexplore.ieee.org/document/9325599)
-- [*P. Mathew, B. Kuriakose and V. Hegde, "Book Recommendation System through content based and collaborative filtering method," 2016 International Conference on Data Mining and Advanced Computing (SAPIENCE), 2016*](https://ieeexplore.ieee.org/document/7684166)
+[1] [*T. Anwar, V. Uma and Shahjad, "Book Recommendation for eLearning Using Collaborative Filtering and Sequential Pattern Mining," 2020 International Conference on Data Analytics for Business and Industry: Way Towards a Sustainable Economy (ICDABI), 2020*](https://ieeexplore.ieee.org/document/9325599)
+
+[2] [*P. Mathew, B. Kuriakose and V. Hegde, "Book Recommendation System through content based and collaborative filtering method," 2016 International Conference on Data Mining and Advanced Computing (SAPIENCE), 2016*](https://ieeexplore.ieee.org/document/7684166)
