@@ -192,8 +192,49 @@ dtypes: int64(3)
 
 memory usage: 1.8+ MB
         
+- Menghitung jumlah rating buku berdasrkan user.
 
-<br /><br />
+| rating | count  |
+|-------:|-------:|
+|    1   |  19485 |
+|    2   |  63010 |
+|    3   | 247698 |
+|    4   | 355878 |
+|    5   | 291198 |
+
+- Mencari buku dengan nilai rating 0 atau tidak di rating.
+
+|     |     count | log_count |
+|----:|----------:|----------:|
+| 0.0 | 532822731 | 20.093699 |
+| 1.0 |     19485 |  9.877400 |
+| 2.0 |     63010 | 11.051049 |
+| 3.0 |    247698 | 12.419966 |
+| 4.0 |    355878 | 12.782343 |
+| 5.0 |    291198 | 12.581759 |
+
+![book-rating-count](https://user-images.githubusercontent.com/105812169/204170154-61afb28e-bebe-4435-9379-75934b6bdca8.png)
+
+- Menghitung banyaknya rating untuk setiap buku.
+
+| book_id | count |
+|--------:|------:|
+|    1    |  100  |
+|    2    |  100  |
+|    3    |  100  |
+|    4    |  100  |
+|    5    |  100  |
+
+- Menghitung banyaknya rating yang diberikan oleh user
+
+| user_id | count |
+|--------:|------:|
+|    1    |   3   |
+|    2    |   3   |
+|    3    |   3   |
+|    4    |   3   |
+|    5    |   3   |
+
 Melakukan visualisasi data menggunakan library matplotlib dan seaborn untuk memahami data lebih jauh, dengan visualisasi sebagai berikut:
 - Top 10 dengan nilai rating tertinggi
 
@@ -209,9 +250,6 @@ Melakukan visualisasi data menggunakan library matplotlib dan seaborn untuk mema
 |           Harry Potter Boxset (Harry Potter, #1-7)          | ![top10-8](https://images.gr-assets.com/books/1392579059s/862041.jpg) |
 |         Harry Potter Collection (Harry Potter, #1-6)        | ![top10-9](https://images.gr-assets.com/books/1328867351s/10.jpg) |
 |             The Indispensable Calvin and Hobbes             | ![top10-10](https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png) |
-
-
-
 
 - Top 10 buku terpopuler
 
@@ -250,11 +288,12 @@ Berdasarkan dari visual diatas dapat disimpulkan bahwa rating paling banyak bera
 
 ## Data Preparation
 
-- **Content Based Model**
+### **Content Based Model**
 
-Tahapan yang dilakukan dalam penyelesaian masalah atau pembuatan sistem rekomendasi menggunakan bahasa pemrograman python, dan dilakukan beberapa tahap preparasi data, yaitu sebagai berikut:
-    - Menghilangkan 849 duplikasi data pada books.csv
-    - Membuat semua nilai di books.csv menjadi *lower case* dan menghilangkan N/A
+Tahapan yang dilakukan dalam penyelesaian masalah atau pembuatan sistem rekomendasi berbasis konten, dan dilakukan beberapa tahap preparasi data, yaitu sebagai berikut:
+
+- Menghilangkan 849 duplikasi data pada books.csv
+- Membuat semua nilai di books.csv menjadi *lower case* dan menghilangkan N/A
 
 |   |                      original_title |           average_rating | average_rating |
 |--:|------------------------------------:|-------------------------:|---------------:|
@@ -274,20 +313,56 @@ Tahapan yang dilakukan dalam penyelesaian masalah atau pembuatan sistem rekomend
 |   3   |              4 |                      thegreatgatsby |        f.scottfitzgerald | 3.89 |             thegreatgatsby f.scottfitzgerald 3.89 |
 |   4   |              5 |                  thefaultinourstars |                johngreen | 4.26 |                 thefaultinourstars johngreen 4.26 |
 
-<br/><br/>
+
+### **Collaborative Filtering**
+
+Tahapan yang dilakukan dalam penyelesaian masalah atau pembuatan sistem rekomendasi berbasis konten, dan dilakukan beberapa tahap preparasi data, yaitu sebagai berikut:
+    
+- Menghilangkan null values dari book_id dan original_title.
+- Menghilangkan buku yang tidak di rating atau memilki rating 0, dengan mengambil buku yang telah dilakukan rating sebanyak 50 kali, hasil ini dilakukan karena untuk mencari tahu reaksi antara user terhadap buku-buku.
+    
+|     |     count | log_count |
+|----:|----------:|----------:|
+| 0.0 | 532822731 | 20.093699 |
+| 1.0 |     19485 |  9.877400 |
+| 2.0 |     63010 | 11.051049 |
+| 3.0 |    247698 | 12.419966 |
+| 4.0 |    355878 | 12.782343 |
+| 5.0 |    291198 | 12.581759 |
+   
+- Menghilangan user yang melakukan pemberian rating dibawah 50 kali.
+- Membuat dataframe baru berdasarkan buku yang telah dihilangkan rating 0 dan user yang telah melakukan rating diatas 50 kali.
+ 
+|       | book_id | user_id | rating | original_title                         |
+|------:|--------:|--------:|-------:|----------------------------------------|
+|   0   |       1 |     314 |      5 | Harry Potter and the Half-Blood Prince |
+|   1   |       1 |     439 |      3 | Harry Potter and the Half-Blood Prince |
+|   2   |       1 |     588 |      5 | Harry Potter and the Half-Blood Prince |
+|   3   |       1 |    1169 |      4 | Harry Potter and the Half-Blood Prince |
+|   4   |       1 |    1185 |      4 | Harry Potter and the Half-Blood Prince |
+|  ...  |     ... |     ... |    ... |                                    ... |
+| 33258 |    9998 |    8078 |      5 |                  砂の女 [Suna no onna] |
+| 33259 |    9998 |   14122 |      4 |                  砂の女 [Suna no onna] |
+| 33260 |    9998 |   25988 |      5 |                  砂の女 [Suna no onna] |
+| 33261 |    9998 |   31162 |      3 |                  砂の女 [Suna no onna] |
+| 33262 |    9998 |   52330 |      4 |                   砂の女 [Suna no onna |
+
+33263 rows × 4 columns
+
+<br/>
 
 ## Modeling and Result
+### **Content Based Model**
 
-- **Content Based Model**
 Model yang digunakan menggunakan library scikit-learn dengan algoritma sebagai berikut:
-    - TfidfVectorizer, Mengubah data text menjadi vector agar bisa dilakukan klasifikasi. Hal ini dilakukan untuk memudahkan dalam training, karena data yang tadinya string diubah menjadi bigram blocks dari karakter, dan merubahnya kedalam matrix.
-    - cosine_similarity, Melakukan perhitungan derajat kesamaan *cosine similarity*, untuk mencari tahu derajat kesamaan dari setiap buku, dengan matrix 9151 x 9151, yang artinya mencari kesamaan antara 9151 buku. 
-    - Membuat model rekomendasi dengan berdasarkan kesamaan yang dihitung dengan *cosine similarity*, dengan membuat fungsi dari *get_recommendation* dengan beberapa paramater sebagai berikut:
-        - title: Judul buku.
-        - cosine_sim: Dataframe mengenai kesamaan berdasarkan *cosine similarity*.
-        - k: Banyaknya rekomendasi yang diberikan.
-        - indicies: list dari fitur untuk rekomendasi berdasarkan kesamaan, dalam hal ini adalah 'original_title'.
-    - Melakukan testing terhadap model rekomendasi yang dibuat, dengan input judul buku **The Hobbit**, dan menghasilkan Top 10 rekomendasi yaitu,
+- TfidfVectorizer, Mengubah data text menjadi vector agar bisa dilakukan klasifikasi. Hal ini dilakukan untuk memudahkan dalam training, karena data yang tadinya string diubah menjadi bigram blocks dari karakter, dan merubahnya kedalam matrix.
+- cosine_similarity, Melakukan perhitungan derajat kesamaan *cosine similarity*, untuk mencari tahu derajat kesamaan dari setiap buku, dengan matrix 9151 x 9151, yang artinya mencari kesamaan antara 9151 buku. 
+- Membuat model rekomendasi dengan berdasarkan kesamaan yang dihitung dengan *cosine similarity*, dengan membuat fungsi dari *get_recommendation* dengan beberapa paramater sebagai berikut:
+    - title: Judul buku.
+    - cosine_sim: Dataframe mengenai kesamaan berdasarkan *cosine similarity*.
+    - k: Banyaknya rekomendasi yang diberikan.
+    - indicies: list dari fitur untuk rekomendasi berdasarkan kesamaan, dalam hal ini adalah 'original_title'.
+- Melakukan testing terhadap model rekomendasi yang dibuat, dengan input judul buku **The Hobbit**, dan menghasilkan Top 10 rekomendasi yaitu,
     
 |    | Books Recommendation based on The Hobbit |
 |---:|-----------------------------------------:|
@@ -302,7 +377,7 @@ Model yang digunakan menggunakan library scikit-learn dengan algoritma sebagai b
 |  9 |                                     Next |
 | 10 |                    The Children of Húrin |
 
-- **Collaborative Filtering Model**
+### **Collaborative Filtering Model**
 
 
 ## Evaluation
