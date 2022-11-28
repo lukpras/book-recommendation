@@ -3,13 +3,10 @@
 ## **Project Overview**
 
 Proyek ini merupakan sebuah proyek untuk membuat sistem rekomendasi berbasis kolaborasi dan berbasi konten. Membeli barang secara online telah menjadi tren saat ini, dibandingkan dengan pergi keluar dan membeli barang sendiri. Ketika membeli barang secara online maka, tedapat salah satu cara bagi penjual atau penyedia layanan belanja online untuk meningkatkan minat beli dari pembeli, salah satu caranya adalah dengan memberi rekomendasi barang, sehingga pembeli menjadi antusias, memudahkan pembeli untuk mencari barang lain dan memberikan cara yang lebih mudah dan cepat untuk membeli barang.
-<br />
 
 Karena di era saat ini yang kebanyakan kegiatan dapat dilakukan secara online, maka sistem rekomendasi dapat digunakan untuk meningkatkan kepuasan pelanggan dan juga meningkatkan aktivitas user, yang dapat berperan penting dalam membuat instansi atau perusahaan untuk meningkatkan kepuasan pelanggan dan juga meningkatkan pendapatan perusahaan, dengan menawarkan rekomendasi yang tepat bagi pelanggan/user. Sehingga sistem rekomendasi sangatlah penting, dimana pada kasus ini adalah rekomendasi untuk buku yang dibaca oleh pelanggan/user.
-<br />
 
 Permasalah tersebut dapat diatasi dengan melakukan pembuatan *machine learning* yang dapat melakukan rekomendasi berdasrkan beberapa fitur dari buku dengan melakukan pembuatan rekomendasi berdasrkan penulis buku dan rating buku menggunakan rekomendasi berbasi konten (*content based*) dan berbasis rating dari pelanggan/user menngunakan filter kolaborasi (*collaborative filtering*).
-<br />
 
 Variabel yang digunakan pada sistem rekomendasi berbasis konten (*content based*) adalah:
 - Judul Buku
@@ -34,7 +31,7 @@ Jurnal Kedua
 - Di Terbitkan pada 19 Agustuws 2020
 
 
-<br/>
+
 
 ## Business Understanding
 
@@ -60,7 +57,7 @@ Setelah permasalahan diketahui, maka harus memiliki tujuan dalam menyelesaikan p
 - Menggunakan algoritma *Content Based* dan *Collaborative Filtering* dalam penyelesaian permasalahan yang ada.
 - Menggunakan algoritma *Content Based* dengan bebrapa proses preparasi berupa membuat *bag of words*, vektoriasasi kata, dan menggunakan ukuran kesamaan beruapa *cosine similarity*, dan untuk algoritma *Collaborative Filtering* menggunakan RecommenderNet, dan memilih fitur rating sebagai fitur utama pada model.
 
-<br/>
+
 
 ## Data Understanding
 Data set yang digunakan merupakan data yang berada pada repository github yang dimiliki oleh **zygmuntz**, dengan nama data set yaitu **"goodbooks-10k"**.
@@ -122,149 +119,147 @@ Melakukan *Exploratory Data Anlysis* menggunakan library pandas, yaitu berupa
         
    - Informasi dari data set
     
-RangeIndex: 10000 entries, 0 to 9999
+        RangeIndex: 10000 entries, 0 to 9999
 
-| #  | Column                    | Non-Null Count | Dtype   |
-|----|---------------------------|----------------|---------|
-| 0  | id                        | 10000 non-null | int64   |
-| 1  | book_id                   | 10000 non-null | int64   |
-| 2  | best_book_id              | 10000 non-null | int64   |
-| 3  | work_id                   | 10000 non-null | int64   |
-| 4  | books_count               | 10000 non-null | int64   |
-| 5  | isbn                      | 9300 non-null  | object  |
-| 6  | isbn13                    | 9415 non-null  | float64 |
-| 7  | authors                   | 10000 non-null | object  |
-| 8  | original_publication_year | 9979 non-null  | float64 |
-| 9  | original_title            | 9415 non-null  | object  |
-| 10 | title                     | 10000 non-null | object  |
-| 11 | language_code             | 8916 non-null  | object  |
-| 12 | average_rating            | 10000 non-null | float64 |
-| 13 | ratings_count             | 10000 non-null | int64   |
-| 14 | work_ratings_count        | 10000 non-null | int64   |
-| 15 | work_text_reviews_count   | 10000 non-null | int64   |
-| 16 | ratings_1                 | 10000 non-null | int64   |
-| 17 | ratings_2                 | 10000 non-null | int64   |
-| 18 | ratings_3                 | 10000 non-null | int64   |
-| 19 | ratings_4                 | 10000 non-null | int64   |
-| 20 | ratings_5                 | 10000 non-null | int64   |
-| 21 | image_url                 | 10000 non-null | object  |
-| 22 | small_image_url           | 10000 non-null | object  |
+        | #  | Column                    | Non-Null Count | Dtype   |
+        |----|---------------------------|----------------|---------|
+        | 0  | id                        | 10000 non-null | int64   |
+        | 1  | book_id                   | 10000 non-null | int64   |
+        | 2  | best_book_id              | 10000 non-null | int64   |
+        | 3  | work_id                   | 10000 non-null | int64   |
+        | 4  | books_count               | 10000 non-null | int64   |
+        | 5  | isbn                      | 9300 non-null  | object  |
+        | 6  | isbn13                    | 9415 non-null  | float64 |
+        | 7  | authors                   | 10000 non-null | object  |
+        | 8  | original_publication_year | 9979 non-null  | float64 |
+        | 9  | original_title            | 9415 non-null  | object  |
+        | 10 | title                     | 10000 non-null | object  |
+        | 11 | language_code             | 8916 non-null  | object  |
+        | 12 | average_rating            | 10000 non-null | float64 |
+        | 13 | ratings_count             | 10000 non-null | int64   |
+        | 14 | work_ratings_count        | 10000 non-null | int64   |
+        | 15 | work_text_reviews_count   | 10000 non-null | int64   |
+        | 16 | ratings_1                 | 10000 non-null | int64   |
+        | 17 | ratings_2                 | 10000 non-null | int64   |
+        | 18 | ratings_3                 | 10000 non-null | int64   |
+        | 19 | ratings_4                 | 10000 non-null | int64   |
+        | 20 | ratings_5                 | 10000 non-null | int64   |
+        | 21 | image_url                 | 10000 non-null | object  |
+        | 22 | small_image_url           | 10000 non-null | object  |
 
 dtypes: float64(3), int64(13), object(7)
-
 memory usage: 1.8+ MB
         
    - Mencari nilai statsitik dari data set
 
-|       |        Count |  Probability |
-|------:|-------------:|-------------:|
-| count | 1.472690e+05 | 1.472690e+05 |
-|  mean | 2.481161e+03 | 6.790295e-06 |
-|  std  | 4.645472e+04 | 1.271345e-04 |
-|  min  | 1.000000e+00 | 2.736740e-09 |
-|  25%  | 5.000000e+00 | 1.368370e-08 |
-|  50%  | 1.700000e+01 | 4.652460e-08 |
-|  75%  | 1.320000e+02 | 3.612500e-07 |
-|  max  | 5.304407e+06 | 1.451679e-02 |
+        |       |        Count |  Probability |
+        |------:|-------------:|-------------:|
+        | count | 1.472690e+05 | 1.472690e+05 |
+        |  mean | 2.481161e+03 | 6.790295e-06 |
+        |  std  | 4.645472e+04 | 1.271345e-04 |
+        |  min  | 1.000000e+00 | 2.736740e-09 |
+        |  25%  | 5.000000e+00 | 1.368370e-08 |
+        |  50%  | 1.700000e+01 | 4.652460e-08 |
+        |  75%  | 1.320000e+02 | 3.612500e-07 |
+        |  max  | 5.304407e+06 | 1.451679e-02 |
 
-<br />
+
    - rating.csv
  
-|   | book_id | user_id | rating |
-|--:|--------:|--------:|-------:|
-| 0 |       1 |     314 |      5 |
-| 1 |       1 |     439 |      3 |
-| 2 |       1 |     588 |      5 |
-| 3 |       1 |    1169 |      4 |
-| 4 |       1 |    1185 |      4 |
+        |   | book_id | user_id | rating |
+        |--:|--------:|--------:|-------:|
+        | 0 |       1 |     314 |      5 |
+        | 1 |       1 |     439 |      3 |
+        | 2 |       1 |     588 |      5 |
+        | 3 |       1 |    1169 |      4 |
+        | 4 |       1 |    1185 |      4 |
         
    - Informasi dari data set
     
-RangeIndex: 981756 entries, 0 to 981755
+        RangeIndex: 981756 entries, 0 to 981755
 
-| #  | Column                    | Non-Null Count  | Dtype   |
-|----|---------------------------|-----------------|---------|
-| 0  | book_id                   | 981756 non-null | int64   |
-| 1  | user_id                   | 981756 non-null | int64   |
-| 2  | rating                    | 981756 non-null | int64   |
+        | #  | Column                    | Non-Null Count  | Dtype   |
+        |----|---------------------------|-----------------|---------|
+        | 0  | book_id                   | 981756 non-null | int64   |
+        | 1  | user_id                   | 981756 non-null | int64   |
+        | 2  | rating                    | 981756 non-null | int64   |
 
-dtypes: int64(3)
-
-memory usage: 1.8+ MB
+        dtypes: int64(3)
+        memory usage: 1.8+ MB
         
 - Menghitung jumlah rating buku berdasrkan user.
 
-| rating | count  |
-|-------:|-------:|
-|    1   |  19485 |
-|    2   |  63010 |
-|    3   | 247698 |
-|    4   | 355878 |
-|    5   | 291198 |
+    | rating | count  |
+    |-------:|-------:|
+    |    1   |  19485 |
+    |    2   |  63010 |
+    |    3   | 247698 |
+    |    4   | 355878 |
+    |    5   | 291198 |
 
 - Mencari buku dengan nilai rating 0 atau tidak di rating.
 
-|     |     count | log_count |
-|----:|----------:|----------:|
-| 0.0 | 532822731 | 20.093699 |
-| 1.0 |     19485 |  9.877400 |
-| 2.0 |     63010 | 11.051049 |
-| 3.0 |    247698 | 12.419966 |
-| 4.0 |    355878 | 12.782343 |
-| 5.0 |    291198 | 12.581759 |
+    |     |     count | log_count |
+    |----:|----------:|----------:|
+    | 0.0 | 532822731 | 20.093699 |
+    | 1.0 |     19485 |  9.877400 |
+    | 2.0 |     63010 | 11.051049 |
+    | 3.0 |    247698 | 12.419966 |
+    | 4.0 |    355878 | 12.782343 |
+    | 5.0 |    291198 | 12.581759 |
 
 ![book-rating-count](https://user-images.githubusercontent.com/105812169/204170154-61afb28e-bebe-4435-9379-75934b6bdca8.png)
 
 - Menghitung banyaknya rating untuk setiap buku.
 
-| book_id | count |
-|--------:|------:|
-|    1    |  100  |
-|    2    |  100  |
-|    3    |  100  |
-|    4    |  100  |
-|    5    |  100  |
+    | book_id | count |
+    |--------:|------:|
+    |    1    |  100  |
+    |    2    |  100  |
+    |    3    |  100  |
+    |    4    |  100  |
+    |    5    |  100  |
 
 - Menghitung banyaknya rating yang diberikan oleh user
 
-| user_id | count |
-|--------:|------:|
-|    1    |   3   |
-|    2    |   3   |
-|    3    |   3   |
-|    4    |   3   |
-|    5    |   3   |
+    | user_id | count |
+    |--------:|------:|
+    |    1    |   3   |
+    |    2    |   3   |
+    |    3    |   3   |
+    |    4    |   3   |
+    |    5    |   3   |
 
 Melakukan visualisasi data menggunakan library matplotlib dan seaborn untuk memahami data lebih jauh, dengan visualisasi sebagai berikut:
 - Top 10 dengan nilai rating tertinggi
 
-|                           title                             |   cover book   |
-|:-----------------------------------------------------------:|:--------------:|
-|                The Complete Calvin and Hobbes               | ![top10-1](https://images.gr-assets.com/books/1473064526s/24812.jpg) |
-|    Harry Potter Boxed Set, Books 1-5 (Harry Potter, #1-5)   | ![top10-2](https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png) |
-|        Words of Radiance (The Stormlight Archive, #2)       | ![top10-3](https://images.gr-assets.com/books/1391535251s/17332218.jpg) |
-|                   Mark of the Lion Trilogy                  | ![top10-4](https://images.gr-assets.com/books/1349032180s/95602.jpg) |
-|                       ESV Study Bible                       | ![top10-5](https://images.gr-assets.com/books/1410151002s/5031805.jpg) |
-|     It's a Magical World: A Calvin and Hobbes Collection    | ![top10-6](https://images.gr-assets.com/books/1437420710s/24814.jpg) |
-| There's Treasure Everywhere: A Calvin and Hobbes Collection | ![top10-7](https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png) |
-|           Harry Potter Boxset (Harry Potter, #1-7)          | ![top10-8](https://images.gr-assets.com/books/1392579059s/862041.jpg) |
-|         Harry Potter Collection (Harry Potter, #1-6)        | ![top10-9](https://images.gr-assets.com/books/1328867351s/10.jpg) |
-|             The Indispensable Calvin and Hobbes             | ![top10-10](https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png) |
+    |                           title                             |   cover book   |
+    |:-----------------------------------------------------------:|:--------------:|
+    |                The Complete Calvin and Hobbes               | ![top10-1](https://images.gr-assets.com/books/1473064526s/24812.jpg) |
+    |    Harry Potter Boxed Set, Books 1-5 (Harry Potter, #1-5)   | ![top10-2](https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png) |
+    |        Words of Radiance (The Stormlight Archive, #2)       | ![top10-3](https://images.gr-assets.com/books/1391535251s/17332218.jpg) |
+    |                   Mark of the Lion Trilogy                  | ![top10-4](https://images.gr-assets.com/books/1349032180s/95602.jpg) |
+    |                       ESV Study Bible                       | ![top10-5](https://images.gr-assets.com/books/1410151002s/5031805.jpg) |
+    |     It's a Magical World: A Calvin and Hobbes Collection    | ![top10-6](https://images.gr-assets.com/books/1437420710s/24814.jpg) |
+    | There's Treasure Everywhere: A Calvin and Hobbes Collection | ![top10-7](https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png) |
+    |           Harry Potter Boxset (Harry Potter, #1-7)          | ![top10-8](https://images.gr-assets.com/books/1392579059s/862041.jpg) |
+    |         Harry Potter Collection (Harry Potter, #1-6)        | ![top10-9](https://images.gr-assets.com/books/1328867351s/10.jpg) |
+    |             The Indispensable Calvin and Hobbes             | ![top10-10](https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png) |
 
 - Top 10 buku terpopuler
 
-|                           title                          |   cover book   |
-|:--------------------------------------------------------:|:--------------:|
-|          The Hunger Games (The Hunger Games, #1)         | ![pop10-1](https://images.gr-assets.com/books/1447303603s/2767052.jpg) |
-| Harry Potter and the Sorcerer's Stone (Harry Potter, #1) | ![pop10-2](https://images.gr-assets.com/books/1474154022s/3.jpg) |
-|                  Twilight (Twilight, #1)                 | ![pop10-3](https://images.gr-assets.com/books/1361039443s/41865.jpg) |
-|                   To Kill a Mockingbird                  | ![pop10-4](https://images.gr-assets.com/books/1361975680s/2657.jpg) |
-|                     The Great Gatsby                     | ![pop10-5](https://images.gr-assets.com/books/1490528560s/4671.jpg) |
-|                  The Fault in Our Stars                  | ![pop10-6](https://images.gr-assets.com/books/1360206420s/11870085.jpg) |
-|                        The Hobbit                        | ![pop10-7](https://images.gr-assets.com/books/1372847500s/5907.jpg) |
-|                  The Catcher in the Rye                  | ![pop10-8](https://images.gr-assets.com/books/1398034300s/5107.jpg) |
-|                    Pride and Prejudice                   | ![pop10-9](https://images.gr-assets.com/books/1320399351s/1885.jpg) |
-|           Angels & Demons (Robert Langdon, #1)           | ![pop10-10](https://images.gr-assets.com/books/1303390735s/960.jpg) |
+    |                           title                          |   cover book   |
+    |:--------------------------------------------------------:|:--------------:|
+    |          The Hunger Games (The Hunger Games, #1)         | ![pop10-1](https://images.gr-assets.com/books/1447303603s/2767052.jpg) |
+    | Harry Potter and the Sorcerer's Stone (Harry Potter, #1) | ![pop10-2](https://images.gr-assets.com/books/1474154022s/3.jpg) |
+    |                  Twilight (Twilight, #1)                 | ![pop10-3](https://images.gr-assets.com/books/1361039443s/41865.jpg) |
+    |                   To Kill a Mockingbird                  | ![pop10-4](https://images.gr-assets.com/books/1361975680s/2657.jpg) |
+    |                     The Great Gatsby                     | ![pop10-5](https://images.gr-assets.com/books/1490528560s/4671.jpg) |
+    |                  The Fault in Our Stars                  | ![pop10-6](https://images.gr-assets.com/books/1360206420s/11870085.jpg) |
+    |                        The Hobbit                        | ![pop10-7](https://images.gr-assets.com/books/1372847500s/5907.jpg) |
+    |                  The Catcher in the Rye                  | ![pop10-8](https://images.gr-assets.com/books/1398034300s/5107.jpg) |
+    |                    Pride and Prejudice                   | ![pop10-9](https://images.gr-assets.com/books/1320399351s/1885.jpg) |
+    |           Angels & Demons (Robert Langdon, #1)           | ![pop10-10](https://images.gr-assets.com/books/1303390735s/960.jpg) |
 
 
 - Distribusi nilai rating oleh user yang diberikan kepada buku
@@ -284,7 +279,6 @@ Melakukan visualisasi data menggunakan library matplotlib dan seaborn untuk mema
 
 Berdasarkan dari visual diatas dapat disimpulkan bahwa rating paling banyak berada di antara rating 3.5 dan 4, dan pada gambar kedua, Bill Waterson memiliki nilai rating yang sangat tinggi sebesar 4.82, dan buku yang ingin dibaca oleh user merupakan buku-buku yang sering kita dengar seperti Harry Potter dan Lord of the Rings.
 
-<br />
 
 ## Data Preparation
 
@@ -295,23 +289,23 @@ Tahapan yang dilakukan dalam penyelesaian masalah atau pembuatan sistem rekomend
 - Menghilangkan 849 duplikasi data pada books.csv
 - Membuat semua nilai di books.csv menjadi *lower case* dan menghilangkan data yang tidak ada
 
-|   |                      original_title |           average_rating | average_rating |
-|--:|------------------------------------:|-------------------------:|---------------:|
-| 0 |                      thehungergames |           suzannecollins |           4.34 |
-| 1 | harrypotterandthephilosopher'sstone | j.k.rowling,marygrandpré |           4.44 |
-| 3 |                  tokillamockingbird |                harperlee |           4.25 |
-| 4 |                      thegreatgatsby |        f.scottfitzgerald |           3.89 |
-| 5 |                  thefaultinourstars |                johngreen |           4.26 |
+    |   |                      original_title |           average_rating | average_rating |
+    |--:|------------------------------------:|-------------------------:|---------------:|
+    | 0 |                      thehungergames |           suzannecollins |           4.34 |
+    | 1 | harrypotterandthephilosopher'sstone | j.k.rowling,marygrandpré |           4.44 |
+    | 3 |                  tokillamockingbird |                harperlee |           4.25 |
+    | 4 |                      thegreatgatsby |        f.scottfitzgerald |           3.89 |
+    | 5 |                  thefaultinourstars |                johngreen |           4.26 |
 
 - Membuat bag of words yang akan digunakan sebagai fitur rekomendasi konten dengan menggabungkan variabel original_title, authors, dan average_rating menjadi satu *soup*, dengan hasil seperti tabel dibawah ini. Hal ini dilakukan karena fitur genre tidak diketahui maka perlu dibaut fitur yang dapat membuat content based filtering menjadi tepat.
 
-| index | original_title |                             authors |           average_rating | soup |                                                   |
-|------:|---------------:|------------------------------------:|-------------------------:|-----:|---------------------------------------------------|
-|   0   |              0 |                      thehungergames |           suzannecollins | 4.34 |                thehungergames suzannecollins 4.34 |
-|   1   |              1 | harrypotterandthephilosopher'sstone | j.k.rowling,marygrandpré | 4.44 | harrypotterandthephilosopher'sstone j.k.rowlin... |
-|   2   |              3 |                  tokillamockingbird |                harperlee | 4.25 |                 tokillamockingbird harperlee 4.25 |
-|   3   |              4 |                      thegreatgatsby |        f.scottfitzgerald | 3.89 |             thegreatgatsby f.scottfitzgerald 3.89 |
-|   4   |              5 |                  thefaultinourstars |                johngreen | 4.26 |                 thefaultinourstars johngreen 4.26 |
+    |       | index |                  original_title |           authors | average_rating | soup                                                   |
+    |------:|---------------:|------------------------------------:|-------------------------:|-----:|---------------------------------------------------|
+    |   0   |              0 |                      thehungergames |           suzannecollins | 4.34 |                thehungergames suzannecollins 4.34 |
+    |   1   |              1 | harrypotterandthephilosopher'sstone | j.k.rowling,marygrandpré | 4.44 | harrypotterandthephilosopher'sstone j.k.rowlin... |
+    |   2   |              3 |                  tokillamockingbird |                harperlee | 4.25 |                 tokillamockingbird harperlee 4.25 |
+    |   3   |              4 |                      thegreatgatsby |        f.scottfitzgerald | 3.89 |             thegreatgatsby f.scottfitzgerald 3.89 |
+    |   4   |              5 |                  thefaultinourstars |                johngreen | 4.26 |                 thefaultinourstars johngreen 4.26 |
 
 
 ### **Collaborative Filtering**
@@ -321,38 +315,37 @@ Tahapan yang dilakukan dalam penyelesaian masalah atau pembuatan sistem rekomend
 - Menghilangkan null values dari book_id dan original_title.
 - Menghilangkan buku yang tidak di rating atau memilki rating 0, dengan mengambil buku yang telah dilakukan rating sebanyak 50 kali, hasil ini dilakukan karena untuk mencari tahu reaksi antara user terhadap buku-buku.
     
-|     |     count | log_count |
-|----:|----------:|----------:|
-| 0.0 | 532822731 | 20.093699 |
-| 1.0 |     19485 |  9.877400 |
-| 2.0 |     63010 | 11.051049 |
-| 3.0 |    247698 | 12.419966 |
-| 4.0 |    355878 | 12.782343 |
-| 5.0 |    291198 | 12.581759 |
+    |     |     count | log_count |
+    |----:|----------:|----------:|
+    | 0.0 | 532822731 | 20.093699 |
+    | 1.0 |     19485 |  9.877400 |
+    | 2.0 |     63010 | 11.051049 |
+    | 3.0 |    247698 | 12.419966 |
+    | 4.0 |    355878 | 12.782343 |
+    | 5.0 |    291198 | 12.581759 |
    
 - Menghilangan user yang melakukan pemberian rating dibawah 50 kali, untuk mencari tahu interaksi antara user terhadap buku-buku.
 - Membuat dataframe baru berdasarkan buku yang telah dihilangkan rating 0 dan user yang telah melakukan rating diatas 50 kali.
  
-|       | book_id | user_id | rating | original_title                         |
-|------:|--------:|--------:|-------:|----------------------------------------|
-|   0   |       1 |     314 |      5 | Harry Potter and the Half-Blood Prince |
-|   1   |       1 |     439 |      3 | Harry Potter and the Half-Blood Prince |
-|   2   |       1 |     588 |      5 | Harry Potter and the Half-Blood Prince |
-|   3   |       1 |    1169 |      4 | Harry Potter and the Half-Blood Prince |
-|   4   |       1 |    1185 |      4 | Harry Potter and the Half-Blood Prince |
-|  ...  |     ... |     ... |    ... |                                    ... |
-| 33258 |    9998 |    8078 |      5 |                  砂の女 [Suna no onna] |
-| 33259 |    9998 |   14122 |      4 |                  砂の女 [Suna no onna] |
-| 33260 |    9998 |   25988 |      5 |                  砂の女 [Suna no onna] |
-| 33261 |    9998 |   31162 |      3 |                  砂の女 [Suna no onna] |
-| 33262 |    9998 |   52330 |      4 |                   砂の女 [Suna no onna |
+    |       | book_id | user_id | rating | original_title                         |
+    |------:|--------:|--------:|-------:|----------------------------------------|
+    |   0   |       1 |     314 |      5 | Harry Potter and the Half-Blood Prince |
+    |   1   |       1 |     439 |      3 | Harry Potter and the Half-Blood Prince |
+    |   2   |       1 |     588 |      5 | Harry Potter and the Half-Blood Prince |
+    |   3   |       1 |    1169 |      4 | Harry Potter and the Half-Blood Prince |
+    |   4   |       1 |    1185 |      4 | Harry Potter and the Half-Blood Prince |
+    |  ...  |     ... |     ... |    ... |                                    ... |
+    | 33258 |    9998 |    8078 |      5 |                  砂の女 [Suna no onna] |
+    | 33259 |    9998 |   14122 |      4 |                  砂の女 [Suna no onna] |
+    | 33260 |    9998 |   25988 |      5 |                  砂の女 [Suna no onna] |
+    | 33261 |    9998 |   31162 |      3 |                  砂の女 [Suna no onna] |
+    | 33262 |    9998 |   52330 |      4 |                   砂の女 [Suna no onna |
 
 33263 rows × 4 columns
 
 - Melakukan random data pada dataframe yang akan dilkaukan pemisahan menjadi train dan validation.
 - Melakukan pemisahan data menjadi train dan validation data, dengan ukuran training sebsar 80% dari data set
 
-<br/>
 
 ## Modeling and Result
 ### **Content Based Model**
@@ -376,18 +369,18 @@ Model yang digunakan menggunakan library scikit-learn dengan algoritma sebagai b
     - indicies: list dari fitur untuk rekomendasi berdasarkan kesamaan, dalam hal ini adalah 'original_title'.
 - Melakukan testing terhadap model rekomendasi yang dibuat, dengan input judul buku **The Hobbit**, dan menghasilkan Top 10 rekomendasi yaitu,
     
-|    | Books Recommendation based on The Hobbit |
-|---:|-----------------------------------------:|
-|  1 |       The Hobbit or There and Back Again |
-|  2 |                    The Lord of the Rings |
-|  3 |               The Fellowship of the Ring |
-|  4 |                           The Two Towers |
-|  5 |     The Hobbit and The Lord of the Rings |
-|  6 |                   The Return of the King |
-|  7 |                        The Tommyknockers |
-|  8 |                         The Tenth Circle |
-|  9 |                                     Next |
-| 10 |                    The Children of Húrin |
+    |    | Books Recommendation based on The Hobbit |
+    |---:|-----------------------------------------:|
+    |  1 |       The Hobbit or There and Back Again |
+    |  2 |                    The Lord of the Rings |
+    |  3 |               The Fellowship of the Ring |
+    |  4 |                           The Two Towers |
+    |  5 |     The Hobbit and The Lord of the Rings |
+    |  6 |                   The Return of the King |
+    |  7 |                        The Tommyknockers |
+    |  8 |                         The Tenth Circle |
+    |  9 |                                     Next |
+    | 10 |                    The Children of Húrin |
 
 
 ### **Collaborative Filtering Model**
@@ -399,7 +392,6 @@ Adapun kelebihan dan kekurangan Collaborative filtering Model adalah sebagai ber
     - Model dapat membuat user menemupakn minat baru, karena berdasarkan history dari user-user lain.
 - Kekurangan
     - TIdak dapat melakukan rekomendasi dari item (buku) yang baru, karena belum terjadi interaksi antara item dan user.
-
 - Model yang digunakan menggunakan class model pada library Keras dan, dengan algoritma yang digunakan adalah RecommenderNet.
     - RecommenderNet bekerja dengan melakukan embedding user dan buku kedala vektor 50 dimensi, model ini menghitung skor kecocokan antara embed buku melalui titik, dan menambahkan bias untuk setiap buku dan setiap user, skor kesamaan memiliki skala antara 0 dan 1 dengan sigmoid.
 - Compile Model, dengan menggunakan parameter:
@@ -407,7 +399,6 @@ Adapun kelebihan dan kekurangan Collaborative filtering Model adalah sebagai ber
     - optimizer, menggunakan Adam Optimizer dengan learning rate 0.001
     - metrics, menggunakan Root Mean Square Error (RMSE)
 - Training model dengan 100 iterasi menghasilkan
-
 
 ```
 Epoch 1/100
@@ -427,54 +418,52 @@ Epoch 100/100
 
 - Melakukan testing terhadap model collaborative filtering yang telah dibuat, dengan hasil sebagai berikut:
     - Mengambil user random dan memperlihatkan rekomendasi untuk user tersebut berdasarakan buku yang ia baca
-    ```
-    Showing recommendations for users: 32592
+        ```
+        Showing recommendations for users: 32592
 
-    ================================
-    Book with high ratings from user
-    --------------------------------
-    Harry Potter and the Philosopher's Stone
-    The Hitchhiker's Guide to the Galaxy
-    Heidi
-    The Lost Continent: Travels in Small-Town America
-    Zodiac
+        ================================
+        Book with high ratings from user
+        --------------------------------
+        Harry Potter and the Philosopher's Stone
+        The Hitchhiker's Guide to the Galaxy
+        Heidi
+        The Lost Continent: Travels in Small-Town America
+        Zodiac
     
-    ================================
-    Top 10 book recommendation
-    --------------------------------
-    Fahrenheit 451
-    American Gods
-    Still Life with Woodpecker
-    Next
-    Rachel's Holiday
-    Little Town on the Prairie
-    Lucy Sullivan is Getting Married
-    Bokhandleren i Kabul
-    Four Blondes
-    Motor Mouth
-    ```
+        ================================
+        Top 10 book recommendation
+        --------------------------------
+        Fahrenheit 451
+        American Gods
+        Still Life with Woodpecker
+        Next
+        Rachel's Holiday
+        Little Town on the Prairie
+        Lucy Sullivan is Getting Married
+        Bokhandleren i Kabul
+        Four Blondes
+        Motor Mouth
+        ```
     - Melakukan rekomendasi berdasarkan buku yang dipilih
-    ```
-    ================================
-    Book you read
-    --------------------------------
-    Peter and the Shadow Thieves
+        ```
+        ================================
+        Book you read
+        --------------------------------
+        Peter and the Shadow Thieves
 
-    ================================
-    Top 10 book recommendation
-    --------------------------------
-    Atonement
-    A People's History of the United States: 1492 to Present 
-    Still Life with Woodpecker
-    Next
-    Rachel's Holiday
-    Lucy Sullivan is Getting Married
-    Bokhandleren i Kabul
-    Amsterdam
-    The Taste of Home Cookbook
-    The Android's Dream
-
-
+        ================================
+        Top 10 book recommendation
+        --------------------------------
+        Atonement
+        A People's History of the United States: 1492 to Present 
+        Still Life with Woodpecker
+        Next
+        Rachel's Holiday
+        Lucy Sullivan is Getting Married
+        Bokhandleren i Kabul
+        Amsterdam
+        The Taste of Home Cookbook
+        The Android's Dream
 
 ## Evaluation
 ### Content Based Model
@@ -486,24 +475,24 @@ Metrik yang digunakan pada model ini adalah precision dimana rumus precision ada
 #### Evaluasi Pertama
 - Buku yang dicari rekomedasinya
 
-|   |              original_title |                                                authors | average_rating |
-|--:|----------------------------:|-------------------------------------------------------:|---------------:|
-| 0 |   The Hobbit                | Chuck Dixon, J.R.R. Tolkien, David Wenzel, Sean Deming |           4.25 |
+    |   |              original_title |                                                authors | average_rating |
+    |--:|----------------------------:|-------------------------------------------------------:|---------------:|
+    | 0 |   The Hobbit                | Chuck Dixon, J.R.R. Tolkien, David Wenzel, Sean Deming |           4.25 |
 
 - Rekomedasi
 
-|   |                       original_title |                                       authors | average_rating |
-|--:|-------------------------------------:|----------------------------------------------:|---------------:|
-| 0 |   The Hobbit or There and Back Again |                                J.R.R. Tolkien |           4.25 |
-| 1 |                The Lord of the Rings |                                J.R.R. Tolkien |           4.47 |
-| 2 |           The Fellowship of the Ring |                                J.R.R. Tolkien |           4.34 |
-| 3 |                       The Two Towers |                                J.R.R. Tolkien |           4.42 |
-| 4 | The Hobbit and The Lord of the Rings |                                J.R.R. Tolkien |           4.59 |
-| 5 |               The Return of the King |                                J.R.R. Tolkien |           4.51 |
-| 6 |                    The Tommyknockers |                                  Stephen King |           3.48 |
-| 7 |                     The Tenth Circle |                                  Jodi Picoult |           3.48 |
-| 8 |                                 Next |                              Michael Crichton |           3.48 |
-| 9 |                The Children of Húrin | J.R.R. Tolkien, Christopher Tolkien, Alan Lee |           3.94 |
+    |   |                       original_title |                                       authors | average_rating |
+    |--:|-------------------------------------:|----------------------------------------------:|---------------:|
+    | 0 |   The Hobbit or There and Back Again |                                J.R.R. Tolkien |           4.25 |
+    | 1 |                The Lord of the Rings |                                J.R.R. Tolkien |           4.47 |
+    | 2 |           The Fellowship of the Ring |                                J.R.R. Tolkien |           4.34 |
+    | 3 |                       The Two Towers |                                J.R.R. Tolkien |           4.42 |
+    | 4 | The Hobbit and The Lord of the Rings |                                J.R.R. Tolkien |           4.59 |
+    | 5 |               The Return of the King |                                J.R.R. Tolkien |           4.51 |
+    | 6 |                    The Tommyknockers |                                  Stephen King |           3.48 |
+    | 7 |                     The Tenth Circle |                                  Jodi Picoult |           3.48 |
+    | 8 |                                 Next |                              Michael Crichton |           3.48 |
+    | 9 |                The Children of Húrin | J.R.R. Tolkien, Christopher Tolkien, Alan Lee |           3.94 |
 
 Pada evaluasi pertama terdapat ketidaksesuaian dari judul buku dan authors, karena kita tidak memiliki genre sebagai fitur untuk melakukan rekomendasi maka, rekomendasi yang diberikan kemungkinan belum tepat presisisnya, dan pada buku yang dicari rekomendasinya memiliki 5 author yang akan berpengaruh untuk hasil rekomendasi.
 
@@ -522,24 +511,24 @@ Presisi yang dihaislkan dari rekomendasi sebsar 70%
 #### Evaluasi Kedua
 - Buku yang dicari rekomedasinya
 
-|   |              original_title |          authors | average_rating |
-|--:|----------------------------:|-----------------:|---------------:|
-| 0 |   Jurassic Park             | Michael Crichton |           3.96 |
+    |   |              original_title |          authors | average_rating |
+    |--:|----------------------------:|-----------------:|---------------:|
+    | 0 |   Jurassic Park             | Michael Crichton |           3.96 |
 
 - Rekomedasi
 
-|   |          original_title |          authors | average_rating |
-|--:|------------------------:|-----------------:|---------------:|
-| 0 |          The Lost World | Michael Crichton |           3.72 |
-| 1 |    The Andromeda Strain | Michael Crichton |           3.87 |
-| 2 |                Timeline | Michael Crichton |           3.83 |
-| 3 | The Great Train Robbery | Michael Crichton |           3.84 |
-| 4 |                  Sphere | Michael Crichton |           3.77 |
-| 5 |        The Terminal Man | Michael Crichton |           3.34 |
-| 6 |              Disclosure | Michael Crichton |           3.76 |
-| 7 |                    Prey | Michael Crichton |           3.72 |
-| 8 |           State of Fear | Michael Crichton |           3.69 |
-| 9 |                Airframe | Michael Crichton |           3.66 |
+    |   |          original_title |          authors | average_rating |
+    |--:|------------------------:|-----------------:|---------------:|
+    | 0 |          The Lost World | Michael Crichton |           3.72 |
+    | 1 |    The Andromeda Strain | Michael Crichton |           3.87 |
+    | 2 |                Timeline | Michael Crichton |           3.83 |
+    | 3 | The Great Train Robbery | Michael Crichton |           3.84 |
+    | 4 |                  Sphere | Michael Crichton |           3.77 |
+    | 5 |        The Terminal Man | Michael Crichton |           3.34 |
+    | 6 |              Disclosure | Michael Crichton |           3.76 |
+    | 7 |                    Prey | Michael Crichton |           3.72 |
+    | 8 |           State of Fear | Michael Crichton |           3.69 |
+    | 9 |                Airframe | Michael Crichton |           3.66 |
 
 Pada evalusi kedua menghasilkan presisi yang baik karena author dari buku yang dicari hanya satu dan pada database author tersebut memiliki lebih dari 10 buku, sehingga rekomendasi akan diberikan berdasarkan author tersebut dengan nilai presisi sebesar 100%
 
