@@ -1,4 +1,4 @@
-# Sistem Rekomendasi Buku menngunakan ***Content Based*** dan ***Collaborative Filtering*** - Luki Prasetyo
+# Sistem Rekomendasi Buku menggunakan ***Content Based*** dan ***Collaborative Filtering*** - Luki Prasetyo
 
 ## **Project Overview**
 
