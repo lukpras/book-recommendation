@@ -4,13 +4,13 @@
 
 Proyek ini merupakan sebuah proyek untuk membuat sistem rekomendasi berbasis kolaborasi dan berbasi konten. Membeli barang secara online telah menjadi tren saat ini, dibandingkan dengan pergi keluar dan membeli barang sendiri. Ketika membeli barang secara online maka, tedapat salah satu cara bagi penjual atau penyedia layanan belanja online untuk meningkatkan minat beli dari pembeli, salah satu caranya adalah dengan memberi rekomendasi barang, sehingga pembeli menjadi antusias, memudahkan pembeli untuk mencari barang lain dan memberikan cara yang lebih mudah dan cepat untuk membeli barang.
 <br />
-<br />
+
 Karena di era saat ini yang kebanyakan kegiatan dapat dilakukan secara online, maka sistem rekomendasi dapat digunakan untuk meningkatkan kepuasan pelanggan dan juga meningkatkan aktivitas user, yang dapat berperan penting dalam membuat instansi atau perusahaan untuk meningkatkan kepuasan pelanggan dan juga meningkatkan pendapatan perusahaan, dengan menawarkan rekomendasi yang tepat bagi pelanggan/user. Sehingga sistem rekomendasi sangatlah penting, dimana pada kasus ini adalah rekomendasi untuk buku yang dibaca oleh pelanggan/user.
 <br />
-<br />
+
 Permasalah tersebut dapat diatasi dengan melakukan pembuatan *machine learning* yang dapat melakukan rekomendasi berdasrkan beberapa fitur dari buku dengan melakukan pembuatan rekomendasi berdasrkan penulis buku dan rating buku menggunakan rekomendasi berbasi konten (*content based*) dan berbasis rating dari pelanggan/user menngunakan filter kolaborasi (*collaborative filtering*).
 <br />
-<br />
+
 Variabel yang digunakan pada sistem rekomendasi berbasis konten (*content based*) adalah:
 - Judul Buku
 - Penulis Buku
@@ -34,7 +34,7 @@ Jurnal Kedua
 - Di Terbitkan pada 19 Agustuws 2020
 
 
-<br/><br/>
+<br/>
 
 ## Business Understanding
 
@@ -60,7 +60,7 @@ Setelah permasalahan diketahui, maka harus memiliki tujuan dalam menyelesaikan p
 - Menggunakan algoritma *Content Based* dan *Collaborative Filtering* dalam penyelesaian permasalahan yang ada.
 - Menggunakan algoritma *Content Based* dengan bebrapa proses preparasi berupa membuat *bag of words*, vektoriasasi kata, dan menggunakan ukuran kesamaan beruapa *cosine similarity*, dan untuk algoritma *Collaborative Filtering* menggunakan RecommenderNet, dan memilih fitur rating sebagai fitur utama pada model.
 
-<br/><br/>
+<br/>
 
 ## Data Understanding
 Data set yang digunakan merupakan data yang berada pada repository github yang dimiliki oleh **zygmuntz**, dengan nama data set yaitu **"goodbooks-10k"**.
@@ -167,7 +167,7 @@ memory usage: 1.8+ MB
 |  75%  | 1.320000e+02 | 3.612500e-07 |
 |  max  | 5.304407e+06 | 1.451679e-02 |
 
-<br /><br />
+<br />
    - rating.csv
  
 |   | book_id | user_id | rating |
@@ -284,7 +284,7 @@ Melakukan visualisasi data menggunakan library matplotlib dan seaborn untuk mema
 
 Berdasarkan dari visual diatas dapat disimpulkan bahwa rating paling banyak berada di antara rating 3.5 dan 4, dan pada gambar kedua, Bill Waterson memiliki nilai rating yang sangat tinggi sebesar 4.82, dan buku yang ingin dibaca oleh user merupakan buku-buku yang sering kita dengar seperti Harry Potter dan Lord of the Rings.
 
-<br /><br />
+<br />
 
 ## Data Preparation
 
@@ -293,7 +293,7 @@ Berdasarkan dari visual diatas dapat disimpulkan bahwa rating paling banyak bera
 Tahapan yang dilakukan dalam penyelesaian masalah atau pembuatan sistem rekomendasi berbasis konten, dan dilakukan beberapa tahap preparasi data, yaitu sebagai berikut:
 
 - Menghilangkan 849 duplikasi data pada books.csv
-- Membuat semua nilai di books.csv menjadi *lower case* dan menghilangkan N/A
+- Membuat semua nilai di books.csv menjadi *lower case* dan menghilangkan data yang tidak ada
 
 |   |                      original_title |           average_rating | average_rating |
 |--:|------------------------------------:|-------------------------:|---------------:|
@@ -303,7 +303,7 @@ Tahapan yang dilakukan dalam penyelesaian masalah atau pembuatan sistem rekomend
 | 4 |                      thegreatgatsby |        f.scottfitzgerald |           3.89 |
 | 5 |                  thefaultinourstars |                johngreen |           4.26 |
 
-- Membuat bag of words yang akan digunakan sebagai fitur rekomendasi konten dengan menggabungkan variabel original_title, authors, dan average_rating menjadi satu *soup*, dengan contoh proses ini seperti tabel dibawah ini.
+- Membuat bag of words yang akan digunakan sebagai fitur rekomendasi konten dengan menggabungkan variabel original_title, authors, dan average_rating menjadi satu *soup*, dengan hasil seperti tabel dibawah ini. Hal ini dilakukan karena fitur genre tidak diketahui maka perlu dibaut fitur yang dapat membuat content based filtering menjadi tepat.
 
 | index | original_title |                             authors |           average_rating | soup |                                                   |
 |------:|---------------:|------------------------------------:|-------------------------:|-----:|---------------------------------------------------|
@@ -316,7 +316,7 @@ Tahapan yang dilakukan dalam penyelesaian masalah atau pembuatan sistem rekomend
 
 ### **Collaborative Filtering**
 
-Tahapan yang dilakukan dalam penyelesaian masalah atau pembuatan sistem rekomendasi berbasis konten, dan dilakukan beberapa tahap preparasi data, yaitu sebagai berikut:
+Tahapan yang dilakukan dalam penyelesaian masalah atau pembuatan sistem rekomendasi berbasis kolaborasi user, dan dilakukan beberapa tahap preparasi data, yaitu sebagai berikut:
     
 - Menghilangkan null values dari book_id dan original_title.
 - Menghilangkan buku yang tidak di rating atau memilki rating 0, dengan mengambil buku yang telah dilakukan rating sebanyak 50 kali, hasil ini dilakukan karena untuk mencari tahu reaksi antara user terhadap buku-buku.
@@ -330,7 +330,7 @@ Tahapan yang dilakukan dalam penyelesaian masalah atau pembuatan sistem rekomend
 | 4.0 |    355878 | 12.782343 |
 | 5.0 |    291198 | 12.581759 |
    
-- Menghilangan user yang melakukan pemberian rating dibawah 50 kali.
+- Menghilangan user yang melakukan pemberian rating dibawah 50 kali, untuk mencari tahu interaksi antara user terhadap buku-buku.
 - Membuat dataframe baru berdasarkan buku yang telah dihilangkan rating 0 dan user yang telah melakukan rating diatas 50 kali.
  
 |       | book_id | user_id | rating | original_title                         |
@@ -349,10 +349,22 @@ Tahapan yang dilakukan dalam penyelesaian masalah atau pembuatan sistem rekomend
 
 33263 rows × 4 columns
 
+- Melakukan random data pada dataframe yang akan dilkaukan pemisahan menjadi train dan validation.
+- Melakukan pemisahan data menjadi train dan validation data, dengan ukuran training sebsar 80% dari data set
+
 <br/>
 
 ## Modeling and Result
 ### **Content Based Model**
+Model ini merupakan, model yang digunakan untuk membuat sistem rekomendasi yang akan melakukan penebakan dari user, berdasarkan aktivitas dari user, dengan menggunakan keywords dan atribut yang di sematkan pada objek, contohnya pada kasus ini adalah judul buku, author, dan rata-rata rating, dan melakukan pencocokan terhadap profil dari user.
+
+Adapun kelebihan dan kekurangan Content Based Model adalah sebagai berikut:
+- Kelebihan
+    - Model ini memiliki kelebihan karena tidak perlunya data dari user untuk membuat sistem rekomendasi.
+    - Kemungkinan relevansi terhadap keinginan user cukup tinggi, karena rekomendasi dapat sesuai dengan keinginan user.
+    - Mudah dalam pembuatan.
+- Kekurangan
+    - Model hanya dapat membuat rekomendasi berbasis ketertarikan user, sehingga model akan kaku jiga ingin membuat rekomendasi diluar ketertarikan user.
 
 Model yang digunakan menggunakan library scikit-learn dengan algoritma sebagai berikut:
 - TfidfVectorizer, Mengubah data text menjadi vector agar bisa dilakukan klasifikasi. Hal ini dilakukan untuk memudahkan dalam training, karena data yang tadinya string diubah menjadi bigram blocks dari karakter, dan merubahnya kedalam matrix.
@@ -377,33 +389,191 @@ Model yang digunakan menggunakan library scikit-learn dengan algoritma sebagai b
 |  9 |                                     Next |
 | 10 |                    The Children of Húrin |
 
+
 ### **Collaborative Filtering Model**
+Collaborative filtering bergantung pada komuntias dari user. Ia tidak memerlukan atribut untuk setiap itemnya seperti pada sistem berbasis konten. Collaborative filtering. Collaborative filtering berdasarkan dari interaksi masa lalu antara user dan item (buku), sehingga user akan diberi rekomendasi dari user-user yang serupa.
+
+Adapun kelebihan dan kekurangan Collaborative filtering Model adalah sebagai berikut:
+- Kelebihan
+    - Tidak membutuhkan domain knowledge dari atribut yang ada.
+    - Model dapat membuat user menemupakn minat baru, karena berdasarkan history dari user-user lain.
+- Kekurangan
+    - TIdak dapat melakukan rekomendasi dari item (buku) yang baru, karena belum terjadi interaksi antara item dan user.
+
+- Model yang digunakan menggunakan class model pada library Keras dan, dengan algoritma yang digunakan adalah RecommenderNet.
+    - RecommenderNet bekerja dengan melakukan embedding user dan buku kedala vektor 50 dimensi, model ini menghitung skor kecocokan antara embed buku melalui titik, dan menambahkan bias untuk setiap buku dan setiap user, skor kesamaan memiliki skala antara 0 dan 1 dengan sigmoid.
+- Compile Model, dengan menggunakan parameter:
+    - loss, dengan BinaryCrossentropy
+    - optimizer, menggunakan Adam Optimizer dengan learning rate 0.001
+    - metrics, menggunakan Root Mean Square Error (RMSE)
+- Training model dengan 100 iterasi menghasilkan
+
+
+```
+Epoch 1/100
+3327/3327 [==============================] - 15s 5ms/step - loss: 0.6078 - root_mean_squared_error: 0.2552 - val_loss: 0.5959 - val_root_mean_squared_error: 0.2458
+Epoch 2/100
+3327/3327 [==============================] - 20s 6ms/step - loss: 0.5825 - root_mean_squared_error: 0.2326 - val_loss: 0.5994 - val_root_mean_squared_error: 0.2490
+Epoch 3/100
+3327/3327 [==============================] - 21s 6ms/step - loss: 0.5736 - root_mean_squared_error: 0.2243 - val_loss: 0.5921 - val_root_mean_squared_error: 0.2425
+...
+Epoch 98/100
+3327/3327 [==============================] - 15s 4ms/step - loss: 0.5207 - root_mean_squared_error: 0.1792 - val_loss: 0.6042 - val_root_mean_squared_error: 0.2315
+Epoch 99/100
+3327/3327 [==============================] - 15s 4ms/step - loss: 0.5211 - root_mean_squared_error: 0.1793 - val_loss: 0.6044 - val_root_mean_squared_error: 0.2316
+Epoch 100/100
+3327/3327 [==============================] - 16s 5ms/step - loss: 0.5206 - root_mean_squared_error: 0.1791 - val_loss: 0.6051 - val_root_mean_squared_error: 0.2318
+```
+
+- Melakukan testing terhadap model collaborative filtering yang telah dibuat, dengan hasil sebagai berikut:
+    - Mengambil user random dan memperlihatkan rekomendasi untuk user tersebut berdasarakan buku yang ia baca
+    ```
+    Showing recommendations for users: 32592
+
+    ================================
+    Book with high ratings from user
+    --------------------------------
+    Harry Potter and the Philosopher's Stone
+    The Hitchhiker's Guide to the Galaxy
+    Heidi
+    The Lost Continent: Travels in Small-Town America
+    Zodiac
+    
+    ================================
+    Top 10 book recommendation
+    --------------------------------
+    Fahrenheit 451
+    American Gods
+    Still Life with Woodpecker
+    Next
+    Rachel's Holiday
+    Little Town on the Prairie
+    Lucy Sullivan is Getting Married
+    Bokhandleren i Kabul
+    Four Blondes
+    Motor Mouth
+    ```
+    - Melakukan rekomendasi berdasarkan buku yang dipilih
+    ```
+    ================================
+    Book you read
+    --------------------------------
+    Peter and the Shadow Thieves
+
+    ================================
+    Top 10 book recommendation
+    --------------------------------
+    Atonement
+    A People's History of the United States: 1492 to Present 
+    Still Life with Woodpecker
+    Next
+    Rachel's Holiday
+    Lucy Sullivan is Getting Married
+    Bokhandleren i Kabul
+    Amsterdam
+    The Taste of Home Cookbook
+    The Android's Dream
+
 
 
 ## Evaluation
-Pada model klasifikasi yang dibuat, menggunakan metric mean accuracy.
-- Mean Accuracy merupakan nilai proporsi dari prediksi yang benar dari total prediksi.
-- Rumus matematis Mean Accuracy adalah
-    - Accuracy = Prediksi yang Benar / Total Prediksi.
-- Hasil Accuracy dari beberapa algoritma yaitu sebagai berikut:
-    - Multinomial Naive Bayes, Train Accuracy **72,72%**, Validation Accuracy **72.1%**
-    - Logistic Regression, Train Accuracy **79,73%**, Validation Accuracy **79.19%**
-    - Decission Tree, Train Accuracy **74,19%**, Validation Accuracy **72.24%**
+### Content Based Model
+Metrik yang digunakan pada model ini adalah precision dimana rumus precision adalah:
+- Precision = Rekomendasi yang relevan / Rekomendasi yang diberikan
+- Dengan hasil precision sebesar 70%
+- Precison diambil dari relevansi antara authors dan rating yang sesuai dengan buku yang dipilih
 
-- Evaluasi dari akurasi
-    - Dari hasil tersebut dapat disimpulkan bahwa Logistic Regression sudah cocok untuk persoalan ini, karena kita akan melakukan klasifikasi dari 2 kategori yaitu Pria dan Wanita.
-    - Nilai akurasi tidak terlalu tinggi dikarenakan daftar nama memiliki nilai yang ambigu jika jumlah Pria dan Wanita sama, jadi ia diklasifikasikan ke Wanita.
-    - Lalu dari hasil prediksi pun ketika kita mencoba dengan nama yang populer dari keempat negara yang berbasis bahasa inggris yaitu AS, Kanada, UK dan Australia, maka hasil prediksi akan menghaslikan kesalahan, karena basis data hanya berasal dari keempat negara tersebut.
+#### Evaluasi Pertama
+- Buku yang dicari rekomedasinya
 
-Dari hasil akurasi tersebut maka diplih Logistic Regression sebagai algoritma yang digunakan untuk klasifikasi dan dilakukan hyperparameters tuning, dan menghasilkan nilai parameter terbaik yaitu:
-    
-    penalty = 'l2'
-    solver = 'lbfgs'
-    
-    
-Parameter ini merupakan default parameter dari Logistic Regression menggunakan scikit-learn, parameter dpat ditambah saat melakukan tuning dengan beberapa parameter lain seperti pada penalty dapat menggunakan nilai 'none' dan 'elasticnet', serta pada parameter solver dapat juga ditambah dengan 'saga' dan 'sag'. Lalu dapat juga ditambah dengan parameter lain seperti C
+|   |              original_title |                                                authors | average_rating |
+|--:|----------------------------:|-------------------------------------------------------:|---------------:|
+| 0 |   The Hobbit                | Chuck Dixon, J.R.R. Tolkien, David Wenzel, Sean Deming |           4.25 |
+
+- Rekomedasi
+
+|   |                       original_title |                                       authors | average_rating |
+|--:|-------------------------------------:|----------------------------------------------:|---------------:|
+| 0 |   The Hobbit or There and Back Again |                                J.R.R. Tolkien |           4.25 |
+| 1 |                The Lord of the Rings |                                J.R.R. Tolkien |           4.47 |
+| 2 |           The Fellowship of the Ring |                                J.R.R. Tolkien |           4.34 |
+| 3 |                       The Two Towers |                                J.R.R. Tolkien |           4.42 |
+| 4 | The Hobbit and The Lord of the Rings |                                J.R.R. Tolkien |           4.59 |
+| 5 |               The Return of the King |                                J.R.R. Tolkien |           4.51 |
+| 6 |                    The Tommyknockers |                                  Stephen King |           3.48 |
+| 7 |                     The Tenth Circle |                                  Jodi Picoult |           3.48 |
+| 8 |                                 Next |                              Michael Crichton |           3.48 |
+| 9 |                The Children of Húrin | J.R.R. Tolkien, Christopher Tolkien, Alan Lee |           3.94 |
+
+Pada evaluasi pertama terdapat ketidaksesuaian dari judul buku dan authors, karena kita tidak memiliki genre sebagai fitur untuk melakukan rekomendasi maka, rekomendasi yang diberikan kemungkinan belum tepat presisisnya, dan pada buku yang dicari rekomendasinya memiliki 5 author yang akan berpengaruh untuk hasil rekomendasi.
+
+Karena kita harus tahu terlebih dahulu konteks dalam buku tersebut untuk menilai apakah rekomendasi sudah benar atau tidak, dan perlu pengetahuan dari orang yang memiliki pengetahuan antara buku hasil rekomendasi diatas sudah presisi atau belum.
+
+Jika kita mengambil authors saja sebagai nilai ketepatan bagi perhitungan preisisi ini maka nilai preisi sebagai berikut:
+
+```
+Recommender system precision = recommendation that relevant / items we recommendend
+Recommender system precision = 7 / 10
+Recommender system precision = 70%
+```
+
+Presisi yang dihaislkan dari rekomendasi sebsar 70%
+
+#### Evaluasi Kedua
+- Buku yang dicari rekomedasinya
+
+|   |              original_title |          authors | average_rating |
+|--:|----------------------------:|-----------------:|---------------:|
+| 0 |   Jurassic Park             | Michael Crichton |           3.96 |
+
+- Rekomedasi
+
+|   |          original_title |          authors | average_rating |
+|--:|------------------------:|-----------------:|---------------:|
+| 0 |          The Lost World | Michael Crichton |           3.72 |
+| 1 |    The Andromeda Strain | Michael Crichton |           3.87 |
+| 2 |                Timeline | Michael Crichton |           3.83 |
+| 3 | The Great Train Robbery | Michael Crichton |           3.84 |
+| 4 |                  Sphere | Michael Crichton |           3.77 |
+| 5 |        The Terminal Man | Michael Crichton |           3.34 |
+| 6 |              Disclosure | Michael Crichton |           3.76 |
+| 7 |                    Prey | Michael Crichton |           3.72 |
+| 8 |           State of Fear | Michael Crichton |           3.69 |
+| 9 |                Airframe | Michael Crichton |           3.66 |
+
+Pada evalusi kedua menghasilkan presisi yang baik karena author dari buku yang dicari hanya satu dan pada database author tersebut memiliki lebih dari 10 buku, sehingga rekomendasi akan diberikan berdasarkan author tersebut dengan nilai presisi sebesar 100%
+
+
+## Collaborative Filtering
+
+Pada Collaborative filtering, menggunakan metrics Root Mean Square Error (RMSE).
+
+Root Mean Square Error (RMSE) adalah standar deviasi dari residual (kesalahan prediksi). Residu adalah ukuran seberapa jauh dari titik data garis regresi; RMSE adalah ukuran seberapa tersebar residu tersebut. Dengan kata lain, seberapa terkonsentrasinya data di sekitar garis yang paling sesuai.
+RMSE baik digunakan untuk melakukan prediksi terhadap nilai numerik.
+
+Rumus untuk menghitung RMSE adalah sebagai berikut:
+
+![RMSE](https://user-images.githubusercontent.com/105812169/204192286-1b6ee340-e212-48b5-9120-91491ddeb1ec.jpg)
+
+Dimana,
+- *predicted i* = Nilai prediksi dari itkerasi ke-i
+- *actual i* = Nilai aktual yang di observasi pada iterasi ke-i
+- N = Total jumlah dari observasi
+
+Perbedaan antara prediksi dan aktual adalah residual.
+
+Dan pada gambar dibawah ini merupakan nilai RMSE dari iterasi ke-1 hingga iterasi ke-100
+
+![collaborative-metrics](https://user-images.githubusercontent.com/105812169/204176964-211f853d-b9e6-4345-9958-1cdfaa1e9458.png)
+
+Pada gambar diatas dapat dilihat bahwa nilai RMSE untuk set training menyentuh titik *steady state* pada iterasi ke 45 dan untuk set validasi menyentuh titik *steady state* pada iterasi ke 20, diatas iterasi tersebut, nilai RMSE tidak berubah secara signifikan.
+
+Dengan nilai RMSE pada iterasi ke terakhir sebesar 0.17 untuk set training dan 0.23 untuk set validasi, dimana nilai ini cukup bagus karena berada di sekitar 0.1 sampai dengan 0.5. Sehingga model yang kita buat dapat melakukan rekomendasi.
+
+
 
 
 
 ## Referensi:
-[Predicting customer’s gender and age depending on mobile phone data](https://journalofbigdata.springeropen.com/articles/10.1186/s40537-019-0180-9)
+- [*T. Anwar, V. Uma and Shahjad, "Book Recommendation for eLearning Using Collaborative Filtering and Sequential Pattern Mining," 2020 International Conference on Data Analytics for Business and Industry: Way Towards a Sustainable Economy (ICDABI), 2020*](https://ieeexplore.ieee.org/document/9325599)
+- [*P. Mathew, B. Kuriakose and V. Hegde, "Book Recommendation System through content based and collaborative filtering method," 2016 International Conference on Data Mining and Advanced Computing (SAPIENCE), 2016*](https://ieeexplore.ieee.org/document/7684166)
