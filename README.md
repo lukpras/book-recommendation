@@ -132,7 +132,9 @@ Pada Tabel.1 merupakan sampel data dari books.csv
         | 20 | ratings_5                 | 10000 non-null | int64   |
         | 21 | image_url                 | 10000 non-null | object  |
         | 22 | small_image_url           | 10000 non-null | object  |
+        
         dtypes: float64(3), int64(13), object(7)
+        
         memory usage: 1.8+ MB
 
         Pada Tabel.2 terdapat beberapa values yang null yang dari beberapa variabel, seperti isbn13 yang dikarenakan buku tersebut merupakan buku lama, sehingga belum memiliki nilai isbn13 (ISBN terbaru), dan juga variabel *original_publication_year*, *language_code*, dan *original_title*.
@@ -347,6 +349,7 @@ Tahapan yang dilakukan dalam penyelesaian masalah atau pembuatan sistem rekomend
     | 33260 |    9998 |   25988 |      5 |                  砂の女 [Suna no onna] |
     | 33261 |    9998 |   31162 |      3 |                  砂の女 [Suna no onna] |
     | 33262 |    9998 |   52330 |      4 |                   砂の女 [Suna no onna |
+    
     33263 rows × 4 columns
 
     Pada Tabel.14 memiliki jumlah baris sebanyak 33263, yang telah direduksi akibat dari pembersihan data, sehingga ketika data dilakukan training akan lebih baik.
