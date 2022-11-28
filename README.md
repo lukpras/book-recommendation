@@ -105,9 +105,6 @@ Sumber data dapat diakses pada [goodbooks-10k repositroy oleh zygmuntz](https://
     - book_id: id dari buku pada situs **goodreads** (integer)
     - user_id: id dari setiap pelanggan (integer)
     - rating: rating yang diberikan oleh setiap user untuk setiap buku, dengan nilai antara 1 sampai dengan 5 (integer)
-- to_read.csv
-    - user_id: book_id: id dari buku pada situs **goodreads** (integer)
-    - book_id: user_id: id dari setiap pelanggan (integer)
 
 ### Visualisasi Data
 Melakukan *Exploratory Data Anlysis* menggunakan library pandas, yaitu berupa
@@ -200,8 +197,8 @@ memory usage: 1.8+ MB
 Melakukan visualisasi data menggunakan library matplotlib dan seaborn untuk memahami data lebih jauh, dengan visualisasi sebagai berikut:
 - Top 10 dengan nilai rating tertinggi
 
-|                           title                             | small_image_url |
-|:-----------------------------------------------------------:|:---------------:|
+|                           title                             |   cover book   |
+|:-----------------------------------------------------------:|:--------------:|
 |                The Complete Calvin and Hobbes               | ![top10-1](https://images.gr-assets.com/books/1473064526s/24812.jpg) |
 |    Harry Potter Boxed Set, Books 1-5 (Harry Potter, #1-5)   | ![top10-2](https://s.gr-assets.com/assets/nophoto/book/50x75-a91bf249278a81aabab721ef782c4a74.png) |
 |        Words of Radiance (The Stormlight Archive, #2)       | ![top10-3](https://images.gr-assets.com/books/1391535251s/17332218.jpg) |
@@ -218,8 +215,8 @@ Melakukan visualisasi data menggunakan library matplotlib dan seaborn untuk mema
 
 - Top 10 buku terpopuler
 
-|                           title                          | small_image_url |
-|:--------------------------------------------------------:|:---------------:|
+|                           title                          |   cover book   |
+|:--------------------------------------------------------:|:--------------:|
 |          The Hunger Games (The Hunger Games, #1)         | ![pop10-1](https://images.gr-assets.com/books/1447303603s/2767052.jpg) |
 | Harry Potter and the Sorcerer's Stone (Harry Potter, #1) | ![pop10-2](https://images.gr-assets.com/books/1474154022s/3.jpg) |
 |                  Twilight (Twilight, #1)                 | ![pop10-3](https://images.gr-assets.com/books/1361039443s/41865.jpg) |
@@ -248,79 +245,64 @@ Melakukan visualisasi data menggunakan library matplotlib dan seaborn untuk mema
 
 
 Berdasarkan dari visual diatas dapat disimpulkan bahwa rating paling banyak berada di antara rating 3.5 dan 4, dan pada gambar kedua, Bill Waterson memiliki nilai rating yang sangat tinggi sebesar 4.82, dan buku yang ingin dibaca oleh user merupakan buku-buku yang sering kita dengar seperti Harry Potter dan Lord of the Rings.
+
 <br /><br />
 
 ## Data Preparation
-Tahapan yang dilakukan dalam penyelesaian masalah atau pembuatan klasifikasi menggunakan bahasa pemrograman python, dan dilakukan beberapa tahap preparasi data, yaitu sebagai berikut:
-- Membuat pivot dengan membuat tabel kategori untuk melihat frekuensi dari jenis kelamin Pria dan Wanita. hal ini dilakukan agar klasifikasi mudah untuk dilakukan.
 
-|  Gender |   F |    M | percent_male | gender |
-|--------:|----:|-----:|-------------:|-------:|
-|    Name |     |      |              |        |
-|    A    | 2.0 |  2.0 |          0.0 | Female |
-|  A'Aff  | 1.0 |  0.0 |         -1.0 | Female |
-|  A'Aron | 0.0 |  1.0 |          1.0 |   Male |
-|  A'Dele | 1.0 |  0.0 |         -1.0 | Female |
-|  A'Isha | 1.0 |  0.0 |         -1.0 | Female |
-|   ...   | ... |  ... |          ... |    ... |
-|  Zyvion | 0.0 |  5.0 |          1.0 |   Male |
-|  Zyvon  | 0.0 |  7.0 |          1.0 |   Male |
-| Zyyanna | 6.0 |  0.0 |         -1.0 | Female |
-|  Zyyon  | 0.0 |  6.0 |          1.0 |   Male |
-|  Zzyzx  | 0.0 | 10.0 |          1.0 |   Male |
+- **Content Based Model**
 
-- Mengubah data text menjadi vector agar bisa dilakukan klasifikasi. Hal ini dilakukan untuk memudahkan dalam training, karena data yang tadinya string diubah menjadi bigram blocks dari karakter.
-- Memisah data menjadi Train dan Validation. Hal ini dilakukan karena data set belum memiliki Train dan Validation data.
-    - Data set dipisahkan karena masih dalam satu set, dan harus kita pisah menggunakan train_test_split di library scikit-learn.
-    - Data set dipsah dengan data untuk *training* sebesar 70% dari total data, dan data untuk validasi sebesar 30%. Dengan rincian sebagai berikut:
-        - Total Train Data 93737
-        - Total Test Data 40173
-        - Total Data set 133910
+Tahapan yang dilakukan dalam penyelesaian masalah atau pembuatan sistem rekomendasi menggunakan bahasa pemrograman python, dan dilakukan beberapa tahap preparasi data, yaitu sebagai berikut:
+    - Menghilangkan 849 duplikasi data pada books.csv
+    - Membuat semua nilai di books.csv menjadi *lower case* dan menghilangkan N/A
+
+|   |                      original_title |           average_rating | average_rating |
+|--:|------------------------------------:|-------------------------:|---------------:|
+| 0 |                      thehungergames |           suzannecollins |           4.34 |
+| 1 | harrypotterandthephilosopher'sstone | j.k.rowling,marygrandpré |           4.44 |
+| 3 |                  tokillamockingbird |                harperlee |           4.25 |
+| 4 |                      thegreatgatsby |        f.scottfitzgerald |           3.89 |
+| 5 |                  thefaultinourstars |                johngreen |           4.26 |
+
+- Membuat bag of words yang akan digunakan sebagai fitur rekomendasi konten dengan menggabungkan variabel original_title, authors, dan average_rating menjadi satu *soup*, dengan contoh proses ini seperti tabel dibawah ini.
+
+| index | original_title |                             authors |           average_rating | soup |                                                   |
+|------:|---------------:|------------------------------------:|-------------------------:|-----:|---------------------------------------------------|
+|   0   |              0 |                      thehungergames |           suzannecollins | 4.34 |                thehungergames suzannecollins 4.34 |
+|   1   |              1 | harrypotterandthephilosopher'sstone | j.k.rowling,marygrandpré | 4.44 | harrypotterandthephilosopher'sstone j.k.rowlin... |
+|   2   |              3 |                  tokillamockingbird |                harperlee | 4.25 |                 tokillamockingbird harperlee 4.25 |
+|   3   |              4 |                      thegreatgatsby |        f.scottfitzgerald | 3.89 |             thegreatgatsby f.scottfitzgerald 3.89 |
+|   4   |              5 |                  thefaultinourstars |                johngreen | 4.26 |                 thefaultinourstars johngreen 4.26 |
+
 <br/><br/>
 
-## Modeling
+## Modeling and Result
 
+- **Content Based Model**
 Model yang digunakan menggunakan library scikit-learn dengan algoritma sebagai berikut:
-- Multinomial Naive Bayes
-    - Menggunaakan Model Multinomial Naive Bayes dengan parameter defaults, dan nilai alpha sam dengan 1 (satu).
-    - Naive Bayes adalah teknik sederhana untuk membuat klasifikasi. model yang menetapkan label kelas ke *problem instances*, direpresentasikan sebagai vektor dari nilai fitur, di mana label kelas diambil dari beberapa himpunan terbatas. Naive Bayes berasumsi bahwa nilai fitur tertentu tidak bergantung pada nilai fitur lainnya. Dengan Multinomial Naive Bayes, sampel atau fitur dari vector merepresentasikan frekuensi dari kejadian tertentu.
-    - Kelebihan Naive Bayes yaitu akan menghasilkan model yang tidak overfit karena tidak mengguanakn fitur yang tidak relevan, akan tetapi hal ini juga menjadi pisau bermata dua karena akan membuat salah dalam klasifikasi dengan contoh ketika kita ingin melakukan prediksi Class Ci, akan tetapi fitur tidak mengenal Class Ci sehingga dapat membuat salah dalam klasifikasi.
-    - Parameter yang digunakan yaitu:
-        - > alpha = 1.0
-        - > fit_prior = True
-        - > class_prior = None
+    - TfidfVectorizer, Mengubah data text menjadi vector agar bisa dilakukan klasifikasi. Hal ini dilakukan untuk memudahkan dalam training, karena data yang tadinya string diubah menjadi bigram blocks dari karakter, dan merubahnya kedalam matrix.
+    - cosine_similarity, Melakukan perhitungan derajat kesamaan *cosine similarity*, untuk mencari tahu derajat kesamaan dari setiap buku, dengan matrix 9151 x 9151, yang artinya mencari kesamaan antara 9151 buku. 
+    - Membuat model rekomendasi dengan berdasarkan kesamaan yang dihitung dengan *cosine similarity*, dengan membuat fungsi dari *get_recommendation* dengan beberapa paramater sebagai berikut:
+        - title: Judul buku.
+        - cosine_sim: Dataframe mengenai kesamaan berdasarkan *cosine similarity*.
+        - k: Banyaknya rekomendasi yang diberikan.
+        - indicies: list dari fitur untuk rekomendasi berdasarkan kesamaan, dalam hal ini adalah 'original_title'.
+    - Melakukan testing terhadap model rekomendasi yang dibuat, dengan input judul buku **The Hobbit**, dan menghasilkan Top 10 rekomendasi yaitu,
+    
+|    | Books Recommendation based on The Hobbit |
+|---:|-----------------------------------------:|
+|  1 |       The Hobbit or There and Back Again |
+|  2 |                    The Lord of the Rings |
+|  3 |               The Fellowship of the Ring |
+|  4 |                           The Two Towers |
+|  5 |     The Hobbit and The Lord of the Rings |
+|  6 |                   The Return of the King |
+|  7 |                        The Tommyknockers |
+|  8 |                         The Tenth Circle |
+|  9 |                                     Next |
+| 10 |                    The Children of Húrin |
 
-
-- Decission Tree
-    - Menggunakan parameter defaults
-    - Decission Tree adalah algoritma seperti flowchart dimana setiap node (titik) merepreenstasikan *test* dari setiap atribut, (misalnya apakah lemparan koin muncul kepala atau ekor), setiap cabang mewakili hasil pengujian, dan setiap *leaf* mewakili label kelas, Jalur dari *root* ke *leaf* mewakili aturan klasifikasi.
-    - Kelebihan dari Decission Tree adalah model yang simple dan mudah dipahami oleh orang-orang yang mungkin kurang paham mengenai machine learning. Decission Tree pun sangat cepat, efisien dan dapat bekerja dengan berbagai macam data seperti numerik, kategori, diskrit, dan kontinyu. Akan tetapi ia pun memiliki kekurangan berupa hasil dari training dan validation mudah sekali menimbulkan overfitting karena feature yang tidak penting memiliki kemungkinan ikut dalam pelatihan model.
-    - Parameter yang digunakan yaitu:
-        - > criterion = "gini"
-        - > splitter = "best"
-        - > min_sample_split = 2
-        - > min_sample_leaf = 1
-
-- Logistic Regression
-    - Menggunakan parameter defauls pada awal pembuatan model.
-    - Logistic Regression, dalam statistika digunakan untuk memprediksi probabilitas kejadian suatu peristiwa dengan mencocokkan data pada fungsi logit kurva logistik. Metode ini merupakan model linier umum yang digunakan untuk regresi binomial. Logistic Regression bekerja dengan data binary, dimana peristiwa terjadi (1) atau tidak terjadi (0), jadi jika diberikan sejumlah fitur, ia akan mencoba untuk mengetahui apakah suatu persitiwa terjadi atau tidak. Jadi peristiwa tersebut bisa bernilai 0 atau 1, ini disebut dengan *Binomial Logistic Regression*, ada juga dengan Logistic Regression dengan beberapa nilai untuk perisiwita yang terjadi disebut dengan *Multinomial Logisitc Regression*.
-    - Kelebihan Logistic Regression yaitu model simple seperti Decisiion Tree dan mudah dipahami, dan dapat digunakan untuk multiclass (multinomial regression), dan dapat melakukan klasifikasi untuk nilai yang tidak diketahui dan nilai akurasinya pun cukup besar, akan tetapi Logistic Regression pun memiliki kekurangan yang cukup signifikan yaitu memiliki asumsi bahwa data linear antara independent dan dependent varibale, nyatanya dalam dunia nyata, data tidak selalu linear.
-    - Parameter yang digunakan yaitu:
-        - > penalty = 'l2'
-        - > C = 1.0
-        - > random_state = None
-        - > solver = 'lbfgs'
-
-Dalam proses modelling pun melakukan hyperparameters tuning dalam pemilihan parameter dari default model yang terbaik. Dimana pada kasus ini model yang terbaik adalah Logistic Regression.
-Dalam melaukan hyperparameters tuning dilakukan dengan menggunakan GridSearchCV yang berada pada library scikit-learn. Parameter yang dipilih untuk melakukan tuning yaitu:
-- Penalty, berupa nilai yang melakukan penalty terhadap varibale, sehingga dapat menghasilkan koefisien terhadap variabel mendekati 0  (nol), atau dapat juga disebut dengan regulasi
-    - Pemilihan parameters penalty yaitu:
-        - l1, nilai absolut terhadap magnitude dari koefisien.
-        - l2, jumlah kuadrat magnitude dari koefisien.
-    - Pemilihan parameter solver yaitu:
-        - newton-cg, baik untuk permasalahan multiclass, karena multinomial loss.
-        - lbfgs, baik untuk permasalahn multiclass, karena dapat menagnani multinomial loss.
-        - liblinear, baik untuk data set yang kecil.
+- **Collaborative Filtering Model**
 
 
 ## Evaluation
